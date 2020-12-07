@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes informations{% endblock %}
+
+{% block content %}
+    <h1 class=" text-center " style="margin-top: 50px;">Mes informations</h1>
+    <a href="{{path('compte')}}">retour</a>
+        <div class="col-md-4 mx-auto formulaire">
+        {% if notification %}
+            <div class="alert alert-info">{{notification}}</div>
+        {% endif %}
+        {{form(form)}}
+        </div>
+
+
+{% endblock %}

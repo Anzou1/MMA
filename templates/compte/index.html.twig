@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block content %}
+
+    <h1 class=" text-center " style="margin-top: 50px;">Mon compte</h1>
+    <h2 class=" text-center " style="margin-top: 50px;">Bienvenue {{app.user.prenom}}</h2>
+    <a href="{{path('compte_edit')}}">Modifier mes informations</a>
+            {% if is_granted('ROLE_ADMIN') %} 
+						<li class="nav-item dropdown" style="list-style:none">
+							<a class="nav-link dropdown-toggle" href="{{ path('admin') }}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adminitration</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown04">
+								<a class="dropdown-item" href="{{ path('admin') }}">Accueil </a>
+								{# <a class="dropdown-item" href="{{ path('admin_articles') }}">Gestion des membres</a> #}
+								<a class="dropdown-item" href="">Gestion des membres</a>
+                            </div>
+						</li>
+			{% endif %} 
+
+{% endblock %}

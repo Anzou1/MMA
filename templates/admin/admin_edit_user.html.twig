@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BACK OFFICE | Modification des membres{% endblock %}
+
+{% block content %}
+	<style>
+		body {
+			background-color: #222;
+			color: white;
+		}
+	</style>
+
+    <h1 class="display-4 text-center my-4"> BACK OFFICE | Gestion des membres</h1>
+
+    <h4 class="text-center">Bienvenue <span class="text-info">{{app.user.prenom}}</span> dans votre <span class="text-danger">BACK OFFICE</span></h4>
+
+    {{ form_start(formMembre,                   {'attr': {'class': 'col-md-4 mx-auto'}                                                           }) }}
+        {{ form_row(formMembre.email,           {'attr': {'placeholder': "Email"},              'label': "Email"                                 }) }}
+        {{ form_row(formMembre.Prenom,          {'attr': {'placeholder': "Prenom"},             'label': "Prenom"                                }) }}
+        {{ form_row(formMembre.Nom,             {'attr': {'placeholder': "Nom"},                'label': "Nom"                                   }) }}
+        {{ form_row(formMembre.roles,           {'label': false }                                                                                 ) }}     
+        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+    {{ form_end(formMembre) }}
+
+{% endblock %}
