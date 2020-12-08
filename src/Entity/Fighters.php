@@ -55,13 +55,24 @@ class Fighters
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $sexe;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $photo;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $categorie = ["Middleweight"];
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $rang = ["1"];
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $sexe = ["Homme"];
+
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -151,18 +162,6 @@ class Fighters
         return $this;
     }
 
-    public function getSexe(): ?string
-    {
-        return $this->sexe;
-    }
-
-    public function setSexe(string $sexe): self
-    {
-        $this->sexe = $sexe;
-
-        return $this;
-    }
-
     public function getPhoto(): ?string
     {
         return $this->photo;
@@ -174,4 +173,41 @@ class Fighters
 
         return $this;
     }
+
+    public function getCategorie(): ?array
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(array $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getRang(): ?array
+    {
+        return $this->rang;
+    }
+
+    public function setRang(array $rang): self
+    {
+        $this->rang = $rang;
+
+        return $this;
+    }
+
+    public function getSexe(): ?array
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe(array $sexe): self
+    {
+        $this->sexe = $sexe;
+
+        return $this;
+    }
+
 }
