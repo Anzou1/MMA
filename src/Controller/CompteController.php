@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Discussion;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CompteController extends AbstractController
 {
@@ -13,6 +14,11 @@ class CompteController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('compte/index.html.twig');
+        $discussion = new Discussion;
+
+        return $this->render('compte/index.html.twig', [
+            'discussion' => $discussion
+        ]);
     }
 }
+

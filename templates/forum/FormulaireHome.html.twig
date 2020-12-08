@@ -1,0 +1,21 @@
+
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+    
+    <br>
+     
+  
+   {{ form_start(formulaire) }}
+
+     {{ form_row(formulaire.commentaires, {'attr': {'placeholder': 'Message'}} ) }}
+     
+   
+   
+
+
+{{ form_end(formulaire) }}
+        
+       
+{% endblock %} 
