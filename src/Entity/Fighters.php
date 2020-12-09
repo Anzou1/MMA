@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+
 use App\Repository\FightersRepository;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @ORM\Entity(repositoryClass=FightersRepository::class)

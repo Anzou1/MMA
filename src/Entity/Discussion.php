@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+
 use App\Repository\DiscussionRepository;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @ORM\Entity(repositoryClass=DiscussionRepository::class)

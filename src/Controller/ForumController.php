@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Commentaire;
 use App\Entity\Discussion;
+use App\Entity\User;
 use App\Form\CommentaireType;
 use App\Repository\CommentaireRepository;
 use App\Repository\DiscussionRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,15 +28,15 @@ class ForumController extends AbstractController
     }
 
     /**
-     * @Route("/forum/debat/{id}", name="forum_debat")
+     * @Route("/forum/debat/new", name="forum_forum")
      */
-    public function home(Discussion $discussion, DiscussionRepository $repo): Response
+    public function home(DiscussionRepository $repo): Response
     {
         $allDiscussion = $repo->findAll();
         
         return $this->render('forum/ForumDiscussion.html.twig', [
-            'allDiscussion' => $allDiscussion,
-            'discussion' => $discussion
+            'allDiscussion' => $allDiscussion
+            
         ]);
     }
 
@@ -43,36 +45,53 @@ class ForumController extends AbstractController
     /**
      * @Route("/forum/home/{id}", name="forum_home")
      */
-    public function homeMessage(Commentaire $comment): Response
+    public function homeMessage(Discussion $discussion, CommentaireRepository $repo): Response
     {
-        
+        $allComment = $repo->findAll();
+        dump($allComment);
+
         return $this->render('forum/ForumHome.html.twig', [
-            'comment' => $comment
+            'discussion' => $discussion,
+            'allComment' => $allComment
         ]);
     }
     
 
     /**
-     * @Route("/forum/post", name="forum_post")
+     * @Route("/forum/post/{id}", name="forum_post")
      */
-    public function FormHome(Request $request, EntityManagerInterface $manager): Response
+    public function FormHome(Discussion $discussion, Request $request, EntityManagerInterface $manager, UserRepository $repo): Response
     {
         
         
-            $comment = new Commentaire;
+        $comment = new Commentaire;
+
         
         
         $formComment = $this->createForm(CommentaireType::class, $comment);
 
       
          $formComment->handleRequest($request);
-         dump($formComment);
+         dump($request);
+        
+         
         if($formComment->isSubmitted() && $formComment->isvalid()){
+
+            
+            $user = $this->getUser();
+          
+
+            // $userComment = $this->getUser()->getId();
+    
+
+           $comment->setIdUser($user);
+           $comment->setIdDiscussion($discussion);
+           $comment->setDate(new \DateTime());
 
             $manager->persist($request);
             $manager->flush();
 
-            
+            return $this->redirectToRoute('forum_home');
 
         }   
 
