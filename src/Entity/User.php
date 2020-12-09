@@ -8,9 +8,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="`user`")
  */
 class User implements UserInterface
 {
+
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -43,6 +47,12 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $Nom;
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $photo;
 
     public function getId(): ?int
     {
@@ -142,6 +152,18 @@ class User implements UserInterface
     public function setNom(string $Nom): self
     {
         $this->Nom = $Nom;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): self
+    {
+        $this->photo = $photo;
 
         return $this;
     }

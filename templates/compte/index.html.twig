@@ -4,8 +4,26 @@
 
 {% block content %}
 
-    <h1 class=" text-center " style="margin-top: 50px;">Mon compte</h1>
-    <h2 class=" text-center " style="margin-top: 50px;">Bienvenue {{app.user.prenom}}</h2>
+<style>
+	.avi{
+		display: flex;
+		justify-content:center;
+	}
+	.avatar{
+		border-radius:25%;
+
+	
+		
+		width:70px;
+		
+	}
+</style>
+
+	<h1 class=" text-center " style="margin-top: 50px;">Mon compte</h1>
+	<h6 class=" text-center ">{{app.user.prenom}}</h6>
+	<div class=" col-md-12 avi"><img class="avatar "src="{{ asset('uploads/photo/' ~ app.user.photo) }}"></div>
+
+  
     <a href="{{path('compte_edit')}}">Modifier mes informations</a>
             {% if is_granted('ROLE_ADMIN') %} 
 						<li class="nav-item dropdown" style="list-style:none">
@@ -13,15 +31,9 @@
 							<div class="dropdown-menu" aria-labelledby="dropdown04">
 								<a class="dropdown-item" href="{{ path('admin') }}">Accueil </a>
 								{# <a class="dropdown-item" href="{{ path('admin_articles') }}">Gestion des membres</a> #}
-								<a class="dropdown-item" href="{{ path('admin_membres')}}">Gestion des membres</a>
-								<a class="dropdown-item" href="{{ path('admin_fighters')}}">Gestion des combattants</a>
+								<a class="dropdown-item" href="">Gestion des membres</a>
                             </div>
 						</li>
-						
-							
-						 <small class="btn btn-primary"><a class="dropdown-item" href="{{ path('compte') }}">Accès Forum</a></small> 
-
-						 
 			{% endif %} 
 
 {% endblock %}
