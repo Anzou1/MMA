@@ -3,12 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Fighters;
+use App\Form\AdminFighterType;
 use App\Repository\UserRepository;
 use App\Form\AdminRegistrationType;
+use App\Repository\FightersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController
@@ -85,10 +89,70 @@ class AdminController extends AbstractController
 
 
 
+    
+
+    /**
+     * @Route("/admin/fighters", name="admin_fighters")
+     */
+    public function fighters(EntityManagerInterface $manager, FightersRepository $repo ):Response
+    {
+        $colonnes = $manager->getClassMetadata(Fighters::class)->getFieldNames();
+        dump($colonnes);
+
+        $fighters = $repo->findAll();
+        dump($fighters);
+
+        
+        return $this->render('admin/admin_table_fighters.html.twig',[
+            'colonnes'=> $colonnes,
+            'fighters'=> $fighters
+        ]);
+    }
+    /**
+     * @Route("/admin/fighter/new", name="admin_new_fighter")
+     * @Route("/admin/{id}/edit_fighter", name="admin_edit_fighter")
+     */
+    public function editFighter(EntityManagerInterface $manager, Fighters $fighters = null, Request $request): Response
+    {
+        if(!$fighters)
+        {
+            $fighters = new Fighters;
+        }
+        $form = $this->createForm(AdminFighterType::class, $fighters);
+        $form->handleRequest($request);
+
+        dump($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->addFlash('success', "Le combattant a bien été modifié");
+            
+            $manager->persist($fighters);
+            $manager->flush();
+
+            return $this->redirectToRoute('admin_fighters');
+        }
+
+        return $this->render('admin/admin_edit_fighter.html.twig', [
+            'formFighters'  => $form->createView(),
+            'editMode' =>$fighters->getId()
+        ]);
+    }
 
 
+    /**
+     * @Route("/admin/{id}/delete_fighter", name="admin_delete_fighters")
+     */
+    public function deleteFighter(EntityManagerInterface $manager, Fighters $fighter)
+    {
+        $manager->remove($fighter);
+        $manager->flush();
 
+        $this->addFlash('success', "Le combattant a bien été supprimé");
 
+        return $this->redirectToRoute('admin_fighters');
+
+    }
 
 
 

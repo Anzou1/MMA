@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BACK OFFICE | modification d'un combattant{% endblock %}
+
+{% block content %}
+	<style>
+		body {
+			background-color: #222;
+			color: white;
+		}
+	</style>
+
+    <h1 class="display-4 text-center my-4">
+	{% if editMode %} Modification d'un combattant
+	{% else %}		  Création d'un nouveau combattant
+	{% endif %}
+	</h1>
+
+    <h4 class="text-center">Bienvenue <span class="text-info">{{app.user.prenom}}</span> dans votre <span class="text-danger">BACK OFFICE</span></h4>
+
+	{{ form_start(formFighters,   			{'attr':{'class':'col-md-4 mx-auto'} 		 		 }) }}
+		{{ form_row(formFighters.name, 		{'attr':{'placeholder':'Nom et Prenom'}, 	'label': "Nom et Prenom" }) }}
+		{{ form_row(formFighters.pays, 		{'attr':{'placeholder':'Pays'}, 			'label': "Pays" }) }}
+		{{ form_row(formFighters.age,  		{'attr':{'placeholder':'Age'}, 				'label': "Age" }) }}
+		{{ form_row(formFighters.poids, 	{'attr':{'placeholder':'Poids'}, 			'label': "Poids" }) }}
+		{{ form_row(formFighters.taille, 	{'attr':{'placeholder':'Taille'}, 			'label': "Taille" }) }}
+		{{ form_row(formFighters.allonge, 	{'attr':{'placeholder':'Allonge'}, 			'label': "Allonge" }) }}
+		{{ form_row(formFighters.palmares,  {'attr':{'placeholder':'Palmares'}, 		'label': "Palmares" }) }}
+		{{ form_row(formFighters.photo, 	{'attr':{'placeholder':'Photo'}, 			'label': "Photo" }) }}
+		{{ form_row(formFighters.rang,	 	{'label': false }             ) }} 
+		{{ form_row(formFighters.categorie, {'label': false }             ) }}   
+		{{ form_row(formFighters.sexe,		{'label': false }             ) }} 
+	
+	<button type="submit" class="btn btn-danger">
+		{% if editMode %} Enregistrer les modifications
+	{% else %}		  	  Création d'un nouveau combattant
+	{% endif %}</button> 
+	{{ form_end(formFighters) }}
+
+{% endblock %}
