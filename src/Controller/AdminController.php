@@ -140,7 +140,7 @@ class AdminController extends AbstractController
 
                 try {
                     $PhotoFile->move(
-                        $this->getParameter('photo_directory'),
+                        $this->getParameter('combattant_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
@@ -151,7 +151,7 @@ class AdminController extends AbstractController
 
 
 
-            $this->addFlash('success', "Le combattant a bien été modifié");
+            $this->addFlash('success', "Le combatant a bien été modifié");
 
             $manager->persist($fighters);
             $manager->flush();
