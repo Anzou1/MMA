@@ -12,8 +12,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class AdminController extends AbstractController
 {
@@ -62,7 +64,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $this->addFlash('success', "Le membre a bien été modifié");
-            
+
             $manager->persist($user);
             $manager->flush();
 
@@ -89,12 +91,12 @@ class AdminController extends AbstractController
 
 
 
-    
+
 
     /**
      * @Route("/admin/fighters", name="admin_fighters")
      */
-    public function fighters(EntityManagerInterface $manager, FightersRepository $repo ):Response
+    public function fighters(EntityManagerInterface $manager, FightersRepository $repo): Response
     {
         $colonnes = $manager->getClassMetadata(Fighters::class)->getFieldNames();
         dump($colonnes);
@@ -102,20 +104,19 @@ class AdminController extends AbstractController
         $fighters = $repo->findAll();
         dump($fighters);
 
-        
-        return $this->render('admin/admin_table_fighters.html.twig',[
-            'colonnes'=> $colonnes,
-            'fighters'=> $fighters
+
+        return $this->render('admin/admin_table_fighters.html.twig', [
+            'colonnes' => $colonnes,
+            'fighters' => $fighters
         ]);
     }
     /**
      * @Route("/admin/fighter/new", name="admin_new_fighter")
      * @Route("/admin/{id}/edit_fighter", name="admin_edit_fighter")
      */
-    public function editFighter(EntityManagerInterface $manager, Fighters $fighters = null, Request $request): Response
+    public function editFighter(EntityManagerInterface $manager, Fighters $fighters = null, Request $request, SluggerInterface $slugger): Response
     {
-        if(!$fighters)
-        {
+        if (!$fighters) {
             $fighters = new Fighters;
         }
         $form = $this->createForm(AdminFighterType::class, $fighters);
@@ -124,9 +125,34 @@ class AdminController extends AbstractController
         dump($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $PhotoFile */
+            $PhotoFile = $form->get('photo')->getData();
+
+
+
+
+            if ($PhotoFile) {
+                $originalFilename = pathinfo($PhotoFile->getClientOriginalName(), PATHINFO_FILENAME);
+
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $PhotoFile->guessExtension();
+
+
+                try {
+                    $PhotoFile->move(
+                        $this->getParameter('photo_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+
+                $fighters->setPhoto($newFilename);
+            }
+
+
 
             $this->addFlash('success', "Le combattant a bien été modifié");
-            
+
             $manager->persist($fighters);
             $manager->flush();
 
@@ -135,7 +161,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/admin_edit_fighter.html.twig', [
             'formFighters'  => $form->createView(),
-            'editMode' =>$fighters->getId()
+            'editMode' => $fighters->getId()
         ]);
     }
 
@@ -151,20 +177,5 @@ class AdminController extends AbstractController
         $this->addFlash('success', "Le combattant a bien été supprimé");
 
         return $this->redirectToRoute('admin_fighters');
-
     }
-
-
-
-
-
-
-
-
-
-
-    
 }
-
-
-
