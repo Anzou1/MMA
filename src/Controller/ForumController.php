@@ -10,6 +10,7 @@ use App\Repository\CommentaireRepository;
 use App\Repository\DiscussionRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -88,10 +89,13 @@ class ForumController extends AbstractController
            $comment->setIdDiscussion($discussion);
            $comment->setDate(new \DateTime());
 
-            $manager->persist($request);
+            $manager->persist($comment);
             $manager->flush();
 
-            return $this->redirectToRoute('forum_home');
+           
+            return $this->redirectToRoute('forum_home', [
+                'id' => $discussion->getId()
+                ]);
 
         }   
 
