@@ -45,26 +45,13 @@ class ForumController extends AbstractController
 
     /**
      * @Route("/forum/home/{id}", name="forum_home")
+     * @Route("/forum/post/{id}", name="forum_post")
      */
-    public function homeMessage(Discussion $discussion, CommentaireRepository $repo): Response
-    {
+    public function homeMessage(Discussion $discussion, CommentaireRepository $repo, Request $request, EntityManagerInterface $manager): Response {
+
         $allComment = $repo->findAll();
         dump($allComment);
 
-        return $this->render('forum/ForumHome.html.twig', [
-            'discussion' => $discussion,
-            'allComment' => $allComment
-        ]);
-    }
-    
-
-    /**
-     * @Route("/forum/post/{id}", name="forum_post")
-     */
-    public function FormHome(Discussion $discussion, Request $request, EntityManagerInterface $manager, UserRepository $repo): Response
-    {
-        
-        
         $comment = new Commentaire;
 
         
@@ -76,34 +63,38 @@ class ForumController extends AbstractController
          dump($request);
         
          
-        if($formComment->isSubmitted() && $formComment->isvalid()){
+        if($formComment->isSubmitted() && $formComment->isvalid())
+        
+        {  
+                $user = $this->getUser();
+            
+
+                // $userComment = $this->getUser()->getId();
+        
+
+            $comment->setIdUser($user);
+            $comment->setIdDiscussion($discussion);
+            $comment->setDate(new \DateTime());
+
+                $manager->persist($comment);
+                $manager->flush();
 
             
-            $user = $this->getUser();
-          
+                return $this->redirectToRoute('forum_home', [
+                    'id' => $discussion->getId()
+                    ]);
 
-            // $userComment = $this->getUser()->getId();
-    
+        } 
 
-           $comment->setIdUser($user);
-           $comment->setIdDiscussion($discussion);
-           $comment->setDate(new \DateTime());
-
-            $manager->persist($comment);
-            $manager->flush();
-
-           
-            return $this->redirectToRoute('forum_home', [
-                'id' => $discussion->getId()
-                ]);
-
-        }   
-
-        return $this->render('forum/FormulaireHome.html.twig', [
+        return $this->render('forum/ForumHome.html.twig', [
+            'discussion' => $discussion,
+            'allComment' => $allComment,
             'formulaire' =>  $formComment->createView()
         ]);
     }
     
-
-    
 }
+
+
+   
+
