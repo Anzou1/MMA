@@ -41,6 +41,10 @@ class Commentaire
      */
     private $id_discussion;
 
+  
+
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,4 +97,7 @@ class Commentaire
 
         return $this;
     }
+
+    
+   
 }
