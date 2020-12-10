@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @ORM\Entity(repositoryClass=CommentaireRepository::class)
@@ -68,24 +70,24 @@ class Commentaire
         return $this;
     }
 
-    public function getIdUser(): ?user
+    public function getIdUser(): ?User
     {
         return $this->id_user;
     }
 
-    public function setIdUser(?user $id_user): self
+    public function setIdUser(?User $id_user): self
     {
         $this->id_user = $id_user;
 
         return $this;
     }
 
-    public function getIdDiscussion(): ?discussion
+    public function getIdDiscussion(): ?Discussion
     {
         return $this->id_discussion;
     }
 
-    public function setIdDiscussion(?discussion $id_discussion): self
+    public function setIdDiscussion(?Discussion $id_discussion): self
     {
         $this->id_discussion = $id_discussion;
 
