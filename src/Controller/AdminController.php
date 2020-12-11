@@ -209,7 +209,7 @@ class AdminController extends AbstractController
         $formDiscussion->handleRequest($request);
         
        
-        dump($formDiscussion);
+        dump($allDiscussion);
        if($formDiscussion->isSubmitted() && $formDiscussion->isvalid())
        
        { 

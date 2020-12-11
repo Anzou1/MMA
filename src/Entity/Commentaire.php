@@ -2,10 +2,8 @@
 
 namespace App\Entity;
 
-
 use App\Repository\CommentaireRepository;
 use Doctrine\ORM\Mapping as ORM;
-
 
 /**
  * @ORM\Entity(repositoryClass=CommentaireRepository::class)
@@ -25,25 +23,21 @@ class Commentaire
     private $commentaires;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
-    private $Date;
+    private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\ManyToOne(targetEntity=user::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $id_user;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Discussion::class)
+     * @ORM\ManyToOne(targetEntity=discussion::class, inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $id_discussion;
-
-  
-
-    
+    private $discussion;
 
     public function getId(): ?int
     {
@@ -64,40 +58,37 @@ class Commentaire
 
     public function getDate(): ?\DateTimeInterface
     {
-        return $this->Date;
+        return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $Date): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->Date = $Date;
+        $this->date = $date;
 
         return $this;
     }
 
-    public function getIdUser(): ?User
+    public function getUser(): ?user
     {
-        return $this->id_user;
+        return $this->user;
     }
 
-    public function setIdUser(?User $id_user): self
+    public function setUser(?user $user): self
     {
-        $this->id_user = $id_user;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getIdDiscussion(): ?Discussion
+    public function getDiscussion(): ?discussion
     {
-        return $this->id_discussion;
+        return $this->discussion;
     }
 
-    public function setIdDiscussion(?Discussion $id_discussion): self
+    public function setDiscussion(?discussion $discussion): self
     {
-        $this->id_discussion = $id_discussion;
+        $this->discussion = $discussion;
 
         return $this;
     }
-
-    
-   
 }
