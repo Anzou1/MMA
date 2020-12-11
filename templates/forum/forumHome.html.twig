@@ -17,7 +17,7 @@
             <div class="mb-1 text-muted">{{ discussion.date|date('d/m/Y à H:i:s') }}</div>
             <p class="card-text mb-auto"></p>
             
-             <small class="col-md-4 ml-5 text-center btn btn-dark "><a class="dropdown-item text-white" href="{{ path('forum_post', {'id': discussion.id}) }}">Ajouter un commentaire</a></small> 
+             <small class="col-md-4 ml-5 text-center btn btn-dark "><a class="dropdown-item text-white" href="#comment">Ajouter un commentaire</a></small> 
             </div>
         </div>
     </div>
@@ -50,6 +50,15 @@
             
             </table>
 
+        {{ form_start(formulaire, {'attr': {'class': 'col-md-7 mx-auto', 'id': 'comment'} }) }}
+
+        {{ form_row(formulaire.commentaires, {'attr': {'placeholder': 'Message'}} ) }}
+        
+    
+                <button type="submit" class="col-md-4 ml-5 text-center btn btn-dark ">Posté le commentaire</a></button> 
+
+
+        {{ form_end(formulaire) }}
 
         
        

@@ -4,6 +4,8 @@ namespace App\Entity;
 
 
 use App\Repository\DiscussionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -28,6 +30,15 @@ class Discussion
      * @ORM\Column(type="date")
      */
     private $Date;
+
+    
+
+    
+
+    public function __construct()
+    {
+       
+    }
 
     public function getId(): ?int
     {
@@ -57,4 +68,7 @@ class Discussion
 
         return $this;
     }
+
+   
+    
 }

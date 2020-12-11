@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MMA| Gestion des Commentaires{% endblock %}
+
+
+
+{% block content %}
+
+<h1 class="display-4 text-center my-4">Back office | 
+
+    Modification Commentaires</h1>
+
+    {{ form_start(formCom, {'attr': {'class': 'col-md-6 mx-auto'}}) }}
+
+           
+           
+            {{ form_row(formCom.commentaires, {'label': "Contenu du commentaire", 'attr':{'rows':15} }) }}
+            
+            
+   
+    
+
+        <button type="submit" class="btn btn-secondary">Modifier le commentaire</button>
+    
+
+      
+
+
+{{ form_end(formCom) }}
+
+{% endblock %}
+ 
