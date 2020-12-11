@@ -185,7 +185,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_fighters');
     }
 
-
+                    //....................//FORUM\\........................\\
 
     /**
      * @Route("/admin/forum", name="admin_forum")
@@ -199,34 +199,35 @@ class AdminController extends AbstractController
 
         $allComment = $comment->findAll();
         $colonnesCom = $manager->getClassMetadata(Commentaire::class)->getFieldNames();
-       
+        // $allComment = $repo->findBy(
+        //     ['id' => '11'],
+        //     ['id' => 'ASC']
+        // );
+        dump($allComment);
+    
 
         $discussion = new Discussion;
 
         $formDiscussion = $this->createForm(AdminDiscussionType::class, $discussion);
 
-      
         $formDiscussion->handleRequest($request);
         
        
-        dump($allDiscussion);
        if($formDiscussion->isSubmitted() && $formDiscussion->isvalid())
        
-       { 
-       
-           
+       {   
            
            $discussion->setDate(new \DateTime());
 
                $manager->persist($discussion);
                $manager->flush();
 
-           
+               $message =  "Une nouvelle discussion a été créée";
+               $this->addflash('info', $message);
+        
                return $this->redirectToRoute('admin_forum');
        }
 
-           
-        
 
         return $this->render('admin/admin_discussion.html.twig', [
             'allDiscussion' => $allDiscussion,
@@ -254,7 +255,8 @@ class AdminController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
 
-            $this->addflash('success', "Le commentaire a bien  été modifié");
+            $message =  "Le commentaire a bien  été modifié";
+            $this->addflash('warning', $message);
 
             return $this->redirectToRoute('admin_forum');
         }
@@ -275,10 +277,10 @@ class AdminController extends AbstractController
         $manager->remove($comment);
         $manager->flush();
 
-        $this->addflash('success', "Le commentaire a bien  été supprimé");
+        $message =  "Le commentaire a bien  été supprimé";
+        $this->addflash('danger', $message);
 
         return $this->redirectToRoute('admin_forum');
-
 
     }
     
@@ -298,7 +300,9 @@ class AdminController extends AbstractController
             $manager->persist($discussion);
             $manager->flush();
 
-            $this->addflash('success', "La discussion a bien  été modifiée");
+            
+            $message =  "La discussion a bien  été modifié";
+            $this->addflash('warning', $message);
 
             return $this->redirectToRoute('admin_forum');
         }
@@ -319,7 +323,8 @@ class AdminController extends AbstractController
         $manager->remove($discussion);
         $manager->flush();
 
-        $this->addflash('success', "La discussion a bien  été supprimé");
+        $message =  "La discussion a bien  été supprimée";
+        $this->addflash('danger', $message);
     
 
         return $this->redirectToRoute('admin_forum');

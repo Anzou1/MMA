@@ -28,13 +28,13 @@ class Commentaire
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class)
+     * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=discussion::class, inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity=Discussion::class, inversedBy="commentaires")
      * @ORM\JoinColumn(nullable=false)
      */
     private $discussion;

@@ -23,6 +23,16 @@
     </div>
      
     </div>
+     {% for label, messages in app.flashes(['danger', 'success', 'warning','info','light','dark', 'primary', 'secondary']) %}
+
+            {% for message in messages %}
+
+            <div class="bg-{{ label }} text-white text-center col-md-4 mx-auto rounded p-3 m-4">
+            {{ message }}
+            </div>
+              {% endfor %}
+
+            {% endfor %}
 
     <table class="table table-dark table-bordered text-center">
 
@@ -30,12 +40,12 @@
 
             {% for comment in allComment %}
 
-            {% if  discussion.id == comment.iddiscussion.id %}
+            {% if  discussion.id == comment.discussion.id %}
                 
             
                 <tr>
                     
-                    <td>{{ comment.iduser.nom }}.  {{ comment.iduser.prenom }}</td>
+                    <td>{{ comment.user.nom }}.  {{ comment.user.prenom }}</td>
                     <td>{{ comment.date|date('d/m/Y à H:i:s') }}</td>
                     <td>{{ comment.commentaires }}</td>
                     
