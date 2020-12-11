@@ -101,6 +101,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/fighters", name="admin_fighters")
+     * 
      */
     public function fighters(EntityManagerInterface $manager, FightersRepository $repo): Response
     {
