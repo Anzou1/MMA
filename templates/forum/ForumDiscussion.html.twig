@@ -1,55 +1,28 @@
 {% extends 'base.html.twig' %}
-{% block carousel  %}
-    
-{% endblock %}
+{% block carousel  %} {% endblock %}
 {% block content %}
 
-
-    
-            <div class="row">
+    <div class="row">
         <div class="col-md-8">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary"></strong>
-
-            
-                
-            <a href=""><h3 class="mb-0">Vos sujets de debat.</h3></a> 
-
-            
-
-            <div class="mb-1 text-muted">phrase intro.... </div>
-            <p class="card-text mb-auto"></p>
-            <a href="{{path('compte')}}" class="stretched-link">Retour page profil</a>
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary"></strong>
+                    <a href=""><h3 class="mb-0">Vos sujets de debat.</h3></a> 
+                    <div class="mb-1 text-muted">phrase intro.... </div>
+                    <p class="card-text mb-auto"></p>
+                    <a href="{{path('compte')}}" class="stretched-link">Retour page profil</a>
+                </div>
             </div>
         </div>
     </div>
 
-    </div>
+    <table class="table table-dark table-bordered text-center">
+        {% for data in allDiscussion %}
+            <tr>
+                <td>{{ data.titre }}</td>
+                <td><a href="{{ path('forum_home', {'id': data.id }) }}">Participer au Forum</a></td>
+            </tr> 
+        {% endfor %}
+    </table>
 
-     <table class="table table-dark table-bordered text-center">
-
-            
-
-            {% for data in allDiscussion %}
-                <tr>
-                    
-                    <td>{{ data.titre }}</td>
-                    
-                    
-                    <td><a href="{{ path('forum_home', {'id': data.id }) }}">Participer au Forum</a></td>
-
-                </tr> 
-          
-                
-            {% endfor %}
-
-            
-            </table>
-
-   
-
-   
-        
-       
 {% endblock %}

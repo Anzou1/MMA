@@ -34,43 +34,42 @@ class ForumController extends AbstractController
     public function home(DiscussionRepository $repo): Response
     {
         $allDiscussion = $repo->findAll();
-        
+
         return $this->render('forum/ForumDiscussion.html.twig', [
             'allDiscussion' => $allDiscussion
-            
+
         ]);
     }
 
-    
+
 
     /**
      * @Route("/forum/home/{id}", name="forum_home")
      * @Route("/forum/post/{id}", name="forum_post")
      */
-    public function homeMessage(Discussion $discussion, CommentaireRepository $repo, Request $request, EntityManagerInterface $manager): Response {
+    public function homeMessage(Discussion $discussion, CommentaireRepository $repo, Request $request, EntityManagerInterface $manager): Response
+    {
 
         $allComment = $repo->findAll();
         dump($allComment);
 
         $comment = new Commentaire;
 
-        
-        
+
+
         $formComment = $this->createForm(CommentaireType::class, $comment);
 
-      
-         $formComment->handleRequest($request);
-         dump($request);
-        
-         
-        if($formComment->isSubmitted() && $formComment->isvalid())
-        
-        {  
-                $user = $this->getUser();
-            
 
-                // $userComment = $this->getUser()->getId();
-        
+        $formComment->handleRequest($request);
+        dump($request);
+
+
+        if ($formComment->isSubmitted() && $formComment->isvalid()) {
+            $user = $this->getUser();
+
+
+            // $userComment = $this->getUser()->getId();
+
 
             $comment->setUser($user);
             $comment->setdiscussion($discussion);
@@ -79,15 +78,14 @@ class ForumController extends AbstractController
             $manager->persist($comment);
             $manager->flush();
 
-                $message =  "Le commentaire a été ajouté";
-                $this->addflash('info', $message);
+            $message =  "Le commentaire a été ajouté";
+            $this->addflash('info', $message);
 
-            
-                return $this->redirectToRoute('forum_home', [
-                    'id' => $discussion->getId()
-                    ]);
 
-        } 
+            return $this->redirectToRoute('forum_home', [
+                'id' => $discussion->getId()
+            ]);
+        }
 
         return $this->render('forum/ForumHome.html.twig', [
             'discussion' => $discussion,
@@ -95,9 +93,4 @@ class ForumController extends AbstractController
             'formulaire' =>  $formComment->createView()
         ]);
     }
-    
 }
-
-
-   
-

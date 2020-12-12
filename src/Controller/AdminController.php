@@ -45,10 +45,10 @@ class AdminController extends AbstractController
     {
 
         $colonnes = $manager->getClassMetadata(User::class)->getFieldNames();
-        
+
 
         $membres = $repo->findAll();
-       
+
 
         return $this->render('admin/admin_table_user.html.twig', [
             'colonnes' => $colonnes,
@@ -65,7 +65,7 @@ class AdminController extends AbstractController
         $form = $this->createForm(AdminRegistrationType::class, $user);
         $form->handleRequest($request);
 
-       
+
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -106,10 +106,10 @@ class AdminController extends AbstractController
     public function fighters(EntityManagerInterface $manager, FightersRepository $repo): Response
     {
         $colonnes = $manager->getClassMetadata(Fighters::class)->getFieldNames();
-        
+
 
         $fighters = $repo->findAll();
-       
+
 
 
         return $this->render('admin/admin_table_fighters.html.twig', [
@@ -129,7 +129,7 @@ class AdminController extends AbstractController
         $form = $this->createForm(AdminFighterType::class, $fighters);
         $form->handleRequest($request);
 
-     
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $PhotoFile */
@@ -186,7 +186,7 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_fighters');
     }
 
-                    //....................//FORUM\\........................\\
+    //....................//FORUM\\........................\\
 
     /**
      * @Route("/admin/forum", name="admin_forum")
@@ -205,29 +205,27 @@ class AdminController extends AbstractController
         //     ['id' => 'ASC']
         // );
         dump($allComment);
-    
+
 
         $discussion = new Discussion;
 
         $formDiscussion = $this->createForm(AdminDiscussionType::class, $discussion);
 
         $formDiscussion->handleRequest($request);
-        
-       
-       if($formDiscussion->isSubmitted() && $formDiscussion->isvalid())
-       
-       {   
-           
-           $discussion->setDate(new \DateTime());
 
-               $manager->persist($discussion);
-               $manager->flush();
 
-               $message =  "Une nouvelle discussion a été créée";
-               $this->addflash('info', $message);
-        
-               return $this->redirectToRoute('admin_forum');
-       }
+        if ($formDiscussion->isSubmitted() && $formDiscussion->isvalid()) {
+
+            $discussion->setDate(new \DateTime());
+
+            $manager->persist($discussion);
+            $manager->flush();
+
+            $message =  "Une nouvelle discussion a été créée";
+            $this->addflash('info', $message);
+
+            return $this->redirectToRoute('admin_forum');
+        }
 
 
         return $this->render('admin/admin_discussion.html.twig', [
@@ -239,20 +237,19 @@ class AdminController extends AbstractController
         ]);
     }
 
-    
+
     /**
      * @Route("/admin/edit-comments/{id}", name="admin_edit_comments")
-     */  
-    public function adminFormComment(Request $request, CommentaireRepository $repo, Commentaire $comment, EntityManagerInterface $manager): Response    
+     */
+    public function adminFormComment(Request $request, CommentaireRepository $repo, Commentaire $comment, EntityManagerInterface $manager): Response
     {
-        
-        
-        $formCom = $this->createForm(AdminCommentaireType::class,$comment);
+
+
+        $formCom = $this->createForm(AdminCommentaireType::class, $comment);
 
         $formCom->handleRequest($request);
 
-        if ($formCom->isSubmitted() && $formCom->isValid())
-        {
+        if ($formCom->isSubmitted() && $formCom->isValid()) {
             $manager->persist($comment);
             $manager->flush();
 
@@ -261,16 +258,15 @@ class AdminController extends AbstractController
 
             return $this->redirectToRoute('admin_forum');
         }
-      
+
         return $this->render('admin/admin_edit_comments.html.twig', [
             'formCom' => $formCom->createView()
 
         ]);
-        
     }
 
 
-     /**
+    /**
      * @Route("/admin/delete-comment/{id}", name="admin_delete_comment")
      */
     public function deleteComment(Commentaire $comment, EntityManagerInterface $manager)
@@ -282,59 +278,49 @@ class AdminController extends AbstractController
         $this->addflash('danger', $message);
 
         return $this->redirectToRoute('admin_forum');
-
     }
-    
+
     /**
      * @Route("/admin/edit-discussion/{id}", name="admin_edit_discussion")
-     */  
-    public function adminFormDiscussion(Request $request, DiscussionRepository $repo, Discussion $discussion, EntityManagerInterface $manager): Response    
+     */
+    public function adminFormDiscussion(Request $request, DiscussionRepository $repo, Discussion $discussion, EntityManagerInterface $manager): Response
     {
-        
-        
-        $formCom = $this->createForm(AdminDiscussionType::class,$discussion);
+
+
+        $formCom = $this->createForm(AdminDiscussionType::class, $discussion);
 
         $formCom->handleRequest($request);
 
-        if ($formCom->isSubmitted() && $formCom->isValid())
-        {
+        if ($formCom->isSubmitted() && $formCom->isValid()) {
             $manager->persist($discussion);
             $manager->flush();
 
-            
+
             $message =  "La discussion a bien  été modifié";
             $this->addflash('warning', $message);
 
             return $this->redirectToRoute('admin_forum');
         }
-       
+
         return $this->render('admin/admin_edit_discussion.html.twig', [
             'formCom' => $formCom->createView()
 
         ]);
-        
     }
 
-     /**
+    /**
      * @Route("/admin/delete-discussion/{id}", name="admin_delete_discussion")
      */
     public function deleteDiscussion(Discussion $discussion, EntityManagerInterface $manager)
     {
-        
+
         $manager->remove($discussion);
         $manager->flush();
 
         $message =  "La discussion a bien  été supprimée";
         $this->addflash('danger', $message);
-    
+
 
         return $this->redirectToRoute('admin_forum');
-
-
     }
-
-
-
-
-
 }
