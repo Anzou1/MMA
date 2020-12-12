@@ -72,12 +72,15 @@ class ForumController extends AbstractController
                 // $userComment = $this->getUser()->getId();
         
 
-            $comment->setIdUser($user);
-            $comment->setIdDiscussion($discussion);
+            $comment->setUser($user);
+            $comment->setdiscussion($discussion);
             $comment->setDate(new \DateTime());
 
-                $manager->persist($comment);
-                $manager->flush();
+            $manager->persist($comment);
+            $manager->flush();
+
+                $message =  "Le commentaire a été ajouté";
+                $this->addflash('info', $message);
 
             
                 return $this->redirectToRoute('forum_home', [

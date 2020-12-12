@@ -16,10 +16,18 @@
  
 {{ form_end(formDiscu) }}
 <br>
+     {% for label, messages in app.flashes(['danger', 'success', 'warning','info','light','dark', 'primary', 'secondary']) %}
 
-	{% for message in app.flashes('success') %}
-		<div class="bg-success text-white text-center col-md-4 mx-auto rounded p-3 m-4"> {{ message }} </div>
-	{% endfor %}
+            {% for message in messages %}
+
+            <div class="bg-{{ label }} text-white text-center col-md-4 mx-auto rounded p-3 m-4">
+            {{ message }}
+            </div>
+
+            {% endfor %}
+
+        {% endfor %}
+	
 
 		<table class="table table-striped table-bordered table-dark table-bordered text-center">
 			<thead class="thead-inverse">
@@ -80,9 +88,9 @@
 							<td class="align-middle">{{ data.id }}</td>
                             <td class="align-middle">{{ data.commentaires }}</td>
                             <td class="align-middle">{{ data.date|date('d/m/Y') }}</td>
-                            <td class="align-middle">{{ data.iddiscussion.titre }}</td>
-							<td class="align-middle">{{ data.iduser.prenom}}</td>
-                            <td class="align-middle">{{ data.iddiscussion.id}}</td>
+                            <td class="align-middle">{{ data.discussion.titre }}</td>
+							<td class="align-middle">{{ data.user.prenom}}</td>
+                            <td class="align-middle">{{ data.discussion.id}}</td>
                             
                             
 							
