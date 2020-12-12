@@ -41,6 +41,7 @@
 							{# <th class="bg-info">PHOTO</th> #}
 							<th class="bg-info">EDIT</th>
 							<th class="bg-info">SUPPR</th>
+							<th class="bg-info">Commentaires associés</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -51,12 +52,16 @@
 							<td class="align-middle">{{ data.titre }}</td>
 							<td class="align-middle">{{ data.date|date('d/m/Y') }}</td>
 							
+
+							
+							
 							{# <td class="align-middle">{{ data.password }}</td> #} 
 							
 							 
 
 							<td class="align-middle"><a href="{{ path('admin_edit_discussion', {'id': data.id}) }}"><i class="far fa-edit text-warning"></i></a></td>
 							<td class="align-middle"><a onclick="return(confirm('Voulez vous vraiment supprimer cette discussion ?'))" href="{{ path('admin_delete_discussion', {'id': data.id}) }}"><i class="fas fa-trash-alt text-danger"></i></a></td>
+							<td class="align-middle"><a href="{{ path('discussion-comment', {'id': data.id}) }}">Voir</a></td>
 					</tr>
 				{% endfor %}
 			</tbody>

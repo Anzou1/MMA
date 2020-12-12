@@ -191,23 +191,26 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/forum", name="admin_forum")
      * @Route("/admin/forum/new", name="forum_new")
+     *  @Route("/admin/forum/{id}", name="discussion-comment")
      */
-    public function adminForum(EntityManagerInterface $manager, DiscussionRepository $repo, Request $request, CommentaireRepository $comment): Response
+    public function adminForum(EntityManagerInterface $manager, DiscussionRepository $repo, Request $request, CommentaireRepository $comment, Discussion $discussion = null): Response
     {
         $allDiscussion = $repo->findAll();
         $colonnes = $manager->getClassMetadata(Discussion::class)->getFieldNames();
 
 
-        $allComment = $comment->findAll();
+       // $allComment = $comment->findAll();
         $colonnesCom = $manager->getClassMetadata(Commentaire::class)->getFieldNames();
-        // $allComment = $repo->findBy(
-        //     ['id' => '11'],
-        //     ['id' => 'ASC']
-        // );
+         $allComment = $comment->findBy(
+            ['discussion' => $discussion],
+            ['date' => 'DESC']
+         );
         dump($allComment);
 
-
-        $discussion = new Discussion;
+         if(!$discussion)
+         {
+            $discussion = new Discussion;
+         }
 
         $formDiscussion = $this->createForm(AdminDiscussionType::class, $discussion);
 
