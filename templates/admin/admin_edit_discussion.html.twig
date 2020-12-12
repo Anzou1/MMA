@@ -5,27 +5,21 @@
 
 
 {% block content %}
+    <style>
+        body {
+            background-color: #222;
+            color: white;
+        }
+    </style>
 
-<h1 class="display-4 text-center my-4">Back office | 
+    <h1 class="display-4 text-center my-4">Back office | Modification du titre</h1>
+    
+    <h4 class="text-center">Bienvenue <span class="text-info">{{app.user.prenom}}</span> dans votre <span class="text-danger">BACK OFFICE</span></h4>
 
-    Modification du titre</h1>
 
     {{ form_start(formCom, {'attr': {'class': 'col-md-6 mx-auto'}}) }}
-
-           
-           
-            {{ form_row(formCom.titre, {'label': "Titre de la discussion", 'attr':{'rows':5} }) }}
-            
-            
-   
-    
-
-        <button type="submit" class="btn btn-secondary">Modifier le titre</button>
-    
-
-      
-
-
-{{ form_end(formCom) }}
+        {{ form_row(formCom.titre, {'label': "Titre de la discussion", 'attr':{'rows':5} }) }}
+        <button type="submit" class="btn btn-primary">Modifier le titre</button>
+    {{ form_end(formCom) }}
 
 {% endblock %}

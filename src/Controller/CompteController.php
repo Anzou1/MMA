@@ -21,4 +21,3 @@ class CompteController extends AbstractController
         ]);
     }
 }
-

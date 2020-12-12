@@ -16,45 +16,33 @@ class HomeController extends AbstractController
      */
     public function index(EntityManagerInterface $manager, FightersRepository $repo): Response
     {
-        $fighters= $manager->getClassMetadata(Fighters::class)->getFieldNames();
+        $fighters = $manager->getClassMetadata(Fighters::class)->getFieldNames();
         $name = $repo->findAll();
-  
 
-        return $this->render('home/index.html.twig',[
+
+        return $this->render('home/index.html.twig', [
             'name' => $name,
             'fighters' => $fighters,
- 
-            
+
+
         ]);
     }
 
-    
+
     /**
      * @Route("/home/fighters_bio/{id}", name="fighters_bio")
      */
     public function fightersBio(EntityManagerInterface $manager, FightersRepository $repo, Fighters $id): Response
     {
         $fighters = $manager->getClassMetadata(Fighters::class)->getFieldNames();
-        
+
 
         dump($id);
-      
-        return $this->render('/home/fighters_bio.html.twig',[
+
+        return $this->render('/home/fighters_bio.html.twig', [
             'id' => $id,
             'fighters' =>  $fighters
-            
+
         ]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
