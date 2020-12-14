@@ -17,6 +17,9 @@ class ChangeInfosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('pseudo', TypeTextType::class, [
+            'disabled' => true
+            ])
             ->add('Prenom', TypeTextType::class, [
                 'disabled' => true
             ])

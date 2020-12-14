@@ -1,43 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon compte{% endblock %}
+{% block title %}Mon compte
+{% endblock %}
 
 {% block content %}
 
-<style>
-	.avi
-	{
-		display: flex;
-		justify-content:center;
-	}
-	.avatar
-	{
-		border-radius:25%;
-		width:70px;
-	}
-</style>
+	<style>
+		.avi {
+			display: flex;
+			justify-content: center;
+		}
+		.avatar {
+			border-radius: 25%;
+			width: 70px;
+		}
+	</style>
 
 	<h1 class=" text-center text-light " style="margin-top: 50px;">Mon compte</h1>
 	<h6 class=" text-center text-info">{{app.user.prenom}}</h6>
-	<div class=" col-md-12 avi"><img class="avatar "src="{{ asset('uploads/photo/' ~ app.user.photo) }}"></div>
-<hr>
+	<div class=" col-md-12 avi"><img class="avatar " src="{{ asset('uploads/photo/' ~ app.user.photo) }}"></div>
+	<hr>
 	<div class="text-center">
 		<a href="{{path('compte_edit')}}">Modifier mes informations</a>
-			{% if is_granted('ROLE_ADMIN') %}
+		{% if is_granted('ROLE_ADMIN') %}
 			<div class="navbar-collapse">
-					<ul class="navbar-nav mr-auto">
-						<li class="item dropdown" style="list-style:none">
-							<a class="link dropdown-toggle" href="{{ path('admin') }}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adminitration</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown04">
-								<a class="dropdown-item" href="{{ path('admin') }}">Accueil </a>
-								<a class="dropdown-item" href="{{ path('admin_membres') }}">Gestion des membres</a>
-								<a class="dropdown-item" href="{{ path('admin_fighters') }}">Gestion des combatants</a>
-								<a class="dropdown-item" href="{{ path('admin_forum') }}">Gestion du forum</a> 
-							</div>
-						</li>
-					</ul>
+				<ul class="navbar-nav mr-auto">
+					<li class="item dropdown" style="list-style:none">
+						<a class="link dropdown-toggle" href="{{ path('admin') }}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adminitration</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" href="{{ path('admin') }}">Accueil
+							</a>
+							<a class="dropdown-item" href="{{ path('admin_membres') }}">Gestion des membres</a>
+							<a class="dropdown-item" href="{{ path('admin_fighters') }}">Gestion des combatants</a>
+							<a class="dropdown-item" href="{{ path('admin_forum') }}">Gestion du forum</a>
+						</div>
+					</li>
+				</ul>
 			</div>
-			{% endif %} 
-			<small class="btn btn-primary"><a class="dropdown-item" href="{{ path('forum_forum') }}">Accès Forum</a></small> 
+		{% endif %}
+
+		<small class="btn btn-primary">
+			<a class="dropdown-item" href="{{ path('forum_forum') }}">Accès Forum</a>
+		</small>
 	</div>
 {% endblock %}

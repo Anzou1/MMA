@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MAA | BACK OFFICE{% endblock %}
+{% block title %}MAA | BACK OFFICE
+{% endblock %}
 
 {% block content %}
 	<style>
@@ -10,16 +11,20 @@
 		}
 	</style>
 
-    <h1 class="display-4 text-center my-4">Administration</h1>
+	<h1 class="display-4 text-center my-4">Administration</h1>
 
-    <h4 class="text-center">Bienvenue <span class="text-info">{{app.user.prenom}}</span> dans votre <span class="text-danger">gestionnaire</span></h4>
+	<h4 class="text-center">Bienvenue
+		<span class="text-info">{{app.user.prenom}}</span>
+		dans votre
+		<span class="text-danger">gestionnaire</span>
+	</h4>
 
-    <hr style="background-color: rgb(255, 255, 255);margin-top:93px;">
-        <div class="text-center" style="display: flex; justify-content:space-between; ">
-            <a href="{{ path('admin_membres') }}" class="col-md-2 btn btn-dark p-3 mb-2 "style="border-radius: 30px;"><img src="assets/img/membres.png" alt="" style="width: 100px;"></a>
-            <a href="{{ path('admin_fighters') }}" class="col-md-2  btn btn-dark p-3 mb-2" style="border-radius: 30px;"><img src="assets/img/combatant.png" alt="" style="width: 100px;"></a>
-            <a href="{{ path('admin_forum') }}" class="col-md-2 btn btn-dark p-3 mb-2" style="border-radius: 30px;"><img src="assets/img/forum.png" alt="" style="width: 100px;"></a>
-        </div>
-<hr style="background-color: rgb(255, 255, 255);">
+	<hr style="background-color: rgb(255, 255, 255);margin-top:93px;">
+	<div class="text-center" style="display: flex; justify-content:space-between; ">
+		<a href="{{ path('admin_membres') }}" class="col-md-2 btn btn-dark p-3 mb-2 " style="border-radius: 30px;"><img src="assets/img/membres.png" alt="" style="width: 100px;"></a>
+		<a href="{{ path('admin_fighters') }}" class="col-md-2  btn btn-dark p-3 mb-2" style="border-radius: 30px;"><img src="assets/img/combatant.png" alt="" style="width: 100px;"></a>
+		<a href="{{ path('admin_forum') }}" class="col-md-2 btn btn-dark p-3 mb-2" style="border-radius: 30px;"><img src="assets/img/forum.png" alt="" style="width: 100px;"></a>
+	</div>
+	<hr style="background-color: rgb(255, 255, 255);">
 
 {% endblock %}
