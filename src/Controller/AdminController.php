@@ -113,6 +113,13 @@ class AdminController extends AbstractController
 
 
 
+
+
+
+
+
+
+
     /**
      * @Route("/admin/fighters", name="admin_fighters")
      * 
@@ -211,6 +218,14 @@ class AdminController extends AbstractController
     }
 
 
+
+
+
+
+
+
+
+
     //....................//FORUM\\........................\\
 
     /**
@@ -287,22 +302,17 @@ class AdminController extends AbstractController
 
 
         $formCom = $this->createForm(AdminCommentaireType::class, $comment);
-
         $formCom->handleRequest($request);
-
         if ($formCom->isSubmitted() && $formCom->isValid()) {
             $manager->persist($comment);
             $manager->flush();
-
             $message =  "Le commentaire a bien  été modifié";
             $this->addflash('warning', $message);
-
             return $this->redirectToRoute('admin_forum');
         }
 
         return $this->render('admin/admin_edit_comments.html.twig', [
             'formCom' => $formCom->createView()
-
         ]);
     }
 
@@ -314,12 +324,15 @@ class AdminController extends AbstractController
     {
         $manager->remove($comment);
         $manager->flush();
-
         $message =  "Le commentaire a bien  été supprimé";
         $this->addflash('danger', $message);
-
         return $this->redirectToRoute('admin_forum');
     }
+
+
+
+
+
 
     /**
      * @Route("/admin/edit-discussion/{id}", name="admin_edit_discussion")

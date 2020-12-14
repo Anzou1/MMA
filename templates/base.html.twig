@@ -11,6 +11,7 @@
 			{% endblock %}
 		</title>
 		<link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+		<link href="{{asset('assets/css/youtube.css')}}" rel="stylesheet">
 		<link
 		rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
@@ -18,9 +19,7 @@
 		<link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
 
 		<style>
-
 			body {
-
 				background: url('assets/img/a.jpeg');
 				background-size: cover;
 				background-repeat: no-repeat;
@@ -31,7 +30,6 @@
 				z-index: -1;
 				position: fixed;
 			}
-
 			.bd-placeholder-img {
 				font-size: 1.125rem;
 				text-anchor: middle;
@@ -40,7 +38,6 @@
 				-ms-user-select: none;
 				user-select: none;
 			}
-
 			@media(min-width: 768px) {
 				.bd-placeholder-img-lg {
 					font-size: 3.5rem;
@@ -76,7 +73,7 @@
 							<a class="nav-link" href="{{path('forum_forum')}}">Forum</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="{{path('home')}}">Pronos</a>
+							<a class="nav-link" href="{{path('home')}}">Prochainement</a>
 						</li>
 						{% if is_granted('ROLE_ADMIN') %}
 							<li class="nav-item dropdown" style="list-style:none">
