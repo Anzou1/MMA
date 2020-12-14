@@ -15,7 +15,6 @@ class CompteController extends AbstractController
     public function index(): Response
     {
         $discussion = new Discussion;
-
         return $this->render('compte/index.html.twig', [
             'discussion' => $discussion
         ]);

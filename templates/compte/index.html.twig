@@ -19,7 +19,8 @@
 	<h1 class=" text-center text-light " style="margin-top: 50px;">Mon compte</h1>
 	<h6 class=" text-center text-info">{{app.user.prenom}}</h6>
 	<div class=" col-md-12 avi"><img class="avatar " src="{{ asset('uploads/photo/' ~ app.user.photo) }}"></div>
-	<hr>
+
+	<br>
 	<div class="text-center">
 		<a href="{{path('compte_edit')}}">Modifier mes informations</a>
 		{% if is_granted('ROLE_ADMIN') %}
@@ -38,7 +39,7 @@
 				</ul>
 			</div>
 		{% endif %}
-
+		<br>
 		<small class="btn btn-primary">
 			<a class="dropdown-item" href="{{ path('forum_forum') }}">Accès Forum</a>
 		</small>

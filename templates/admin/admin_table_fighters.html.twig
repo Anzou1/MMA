@@ -48,12 +48,12 @@
 						<td class="align-middle">{{ data.sexe[0] }}</td>
 
 						<td class="align-middle">
-							<a href="{{ path('admin_edit_membre', {'id': data.id}) }}">
+							<a href="{{ path('admin_edit_fighter', {'id': data.id}) }}">
 								<i class="btn btn-secondary far fa-edit text-warning"></i>
 							</a>
 						</td>
 						<td class="align-middle">
-							<a onclick="return(confirm('Voulez vous vraiment supprimer cet membre ?'))" href="{{ path('admin_delete_membre', {'id': data.id}) }}">
+							<a onclick="return(confirm('Voulez-vous vraiment supprimer ce combattant ?'))" href="{{ path('admin_delete_fighters', {'id': data.id}) }}">
 								<i class="btn btn-secondary fas fa-trash-alt text-danger"></i>
 							</a>
 						</td>
