@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Entity\Fighters;
 use App\Entity\Discussion;
 use App\Entity\Commentaire;
+use App\Form\RechercheType;
+use App\NewClass\Recherche;
 use App\Form\AdminFighterType;
 use App\Form\AdminDiscussionType;
 use App\Form\AdminCommentaireType;
@@ -35,13 +37,17 @@ class AdminController extends AbstractController
         ]);
     }
 
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
 
 
     /**
      * @Route("/admin/membres", name="admin_membres")
      */
-    public function adminMembres(EntityManagerInterface $manager, UserRepository $repo): Response
+    public function adminMembres(EntityManagerInterface $manager, UserRepository $repo, Request $request): Response
     {
 
         $colonnes = $manager->getClassMetadata(User::class)->getFieldNames();
@@ -49,11 +55,22 @@ class AdminController extends AbstractController
 
         $membres = $repo->findAll();
 
+        $membres = $this->entityManager->getRepository(User::class)->findAll();
+        $recherche = new Recherche();
 
+        $form = $this->createForm(RechercheType::class, $recherche);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $membres = $this->entityManager->getRepository(User::class)->findWithRecherche($recherche);
+        }
         return $this->render('admin/admin_table_user.html.twig', [
+            'membres' => $membres,
+            'form' => $form->createView(),
             'colonnes' => $colonnes,
             'membres' => $membres
         ]);
+
     }
 
     /**
@@ -97,22 +114,30 @@ class AdminController extends AbstractController
 
 
 
-
-
     /**
      * @Route("/admin/fighters", name="admin_fighters")
      * 
      */
-    public function fighters(EntityManagerInterface $manager, FightersRepository $repo): Response
+    public function fighters(EntityManagerInterface $manager, FightersRepository $repo, Request $request): Response
     {
+
         $colonnes = $manager->getClassMetadata(Fighters::class)->getFieldNames();
 
 
         $fighters = $repo->findAll();
 
+        $fighters = $this->entityManager->getRepository(Fighters::class)->findAll();
+        $recherche = new Recherche();
 
+        $form = $this->createForm(RechercheType::class, $recherche);
 
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $fighters = $this->entityManager->getRepository(Fighters::class)->findWithRecherche($recherche);
+        }
         return $this->render('admin/admin_table_fighters.html.twig', [
+            'fighters' => $fighters,
+            'form' => $form->createView(),
             'colonnes' => $colonnes,
             'fighters' => $fighters
         ]);
@@ -186,12 +211,13 @@ class AdminController extends AbstractController
         return $this->redirectToRoute('admin_fighters');
     }
 
+
     //....................//FORUM\\........................\\
 
     /**
      * @Route("/admin/forum", name="admin_forum")
      * @Route("/admin/forum/new", name="forum_new")
-     *  @Route("/admin/forum/{id}", name="discussion-comment")
+     * @Route("/admin/forum/{id}", name="discussion-comment")
      */
     public function adminForum(EntityManagerInterface $manager, DiscussionRepository $repo, Request $request, CommentaireRepository $comment, Discussion $discussion = null): Response
     {
@@ -199,18 +225,16 @@ class AdminController extends AbstractController
         $colonnes = $manager->getClassMetadata(Discussion::class)->getFieldNames();
 
 
-       // $allComment = $comment->findAll();
         $colonnesCom = $manager->getClassMetadata(Commentaire::class)->getFieldNames();
-         $allComment = $comment->findBy(
+        $allComment = $comment->findBy(
             ['discussion' => $discussion],
             ['date' => 'DESC']
-         );
+        );
         dump($allComment);
 
-         if(!$discussion)
-         {
+        if (!$discussion) {
             $discussion = new Discussion;
-         }
+        }
 
         $formDiscussion = $this->createForm(AdminDiscussionType::class, $discussion);
 
@@ -231,7 +255,22 @@ class AdminController extends AbstractController
         }
 
 
+
+        $allComment = $this->entityManager->getRepository(Commentaire::class)->findBy(
+            ['discussion' => $discussion],
+            ['date' => 'DESC']
+        );
+        $recherche = new Recherche();
+
+        $form = $this->createForm(RechercheType::class, $recherche);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $allComment = $this->entityManager->getRepository(Commentaire::class)->findWithRecherche($recherche);
+        }
         return $this->render('admin/admin_discussion.html.twig', [
+            'allComment' => $allComment,
+            'form' => $form->createView(),
             'allDiscussion' => $allDiscussion,
             'colonnes' => $colonnes,
             'allComment' => $allComment,
