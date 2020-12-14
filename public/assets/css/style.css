@@ -25,158 +25,116 @@ body {
 }
 
 
-/* AJOUT HOME CYRIL 09/12/2020 */
+ /* AJOUT HOME CYRIL 09/12/2020 */
 
-.underbanner {
+.instagram{
+    background-color: red;
+}
+
+.fightername
+{
+    font-family: 'Anton', sans-serif; 
+    font-size: 2vw;
+}
+
+.underbanner{
     height: 77px;
     width: 100%;
 }
 
-
-.annonce {
+.annonce
+{
     height: 480px;
-    background-color: white;
     width: 100%;
-
-
 }
 
-
-#myCarousel {
-    width: 100%;
-    height: auto;
-
-    @media screen and (max-width: 400px) {}
+.textcolonnetale 
+{
+    font-family: 'Anton', sans-serif;
+    color: white;
+    background-color: #ffc107;;
+    border-radius: 2px;
 }
 
-.taleofthetape {
-
-
-    height: 420px;
-
-    @media(max-width:767px) {}
-
-    @media(min-width:768px) {}
-
-    @media(min-width:992px) {}
-
-    @media(min-width:1200px) {}
-
+#myCarousel
+{
+width: 100%;
+height: auto;
 }
 
-.prono {
+.prono
+{
     height: 480px;
-    background-color: white;
-    width: 100%;
-
-}
-
-.bloc {
-    height: 420px;
-    background-color: white;
     width: 100%;
 }
 
-.forum {
+.bloc
+{
+    height: 100px;
+}  
+
+.forum
+{
     height: 480px;
-    background-color: red;
+    background-color:red;
     width: 100%;
 }
 
-
-.top15 {
+.top15
+{
     height: 480px;
-    background-color: white;
+    background-color:white;
     width: 100%;
 }
-
-.entbanner {
-    height: 25px;
-    background-color: black;
-    width: 100%;
-}
-
-.entertainment {
+    .entbanner{
+        height: 25px;
+        background-color: black;
+        width: 100%; 
+    }
+.entertainment{
     height: 400px;
-
+    
     width: 100%;
 }
 
-
-
-.tofhetapetitle {
+.tofhetapetitle{
     text-align: center;
+    font-size: 2.8vw;
+    font-family: 'Anton', sans-serif;
+    color: white;
+    background-color: #ffc107;
 }
 
-
-.bluecorner {
-    width: 49%;
-    background-color: white;
-
-    @media(max-width:767px) {}
-
-    @media(min-width:768px) {}
-
-    @media(min-width:992px) {}
-
-    @media(min-width:1200px) {}
+.bluecorner
+{ 
+    width:79%;
 }
 
-
-.redcorner {
-    width: 49%;
+.redcorner
+{
+    width:79%;
     transform: scaleX(-1);
-
-    @media(max-width:767px) {}
-
-    @media(min-width:768px) {}
-
-    @media(min-width:992px) {}
-
-    @media(min-width:1200px) {}
-
 }
 
-
-.taleoftext {
-    font-size: 12px;
-
-}
-
-.ranking {
+.ranking
+{
     text-align: center;
 }
 
 
-/* *******media queries telephone***********/
+ /* *******media queries telephone***********/
 
 
 
-@media screen and (max-width: 619px) {
-    .annonce {
-        order: 1;
+    @media screen and (max-width: 619px) {
+        .annonce{order:1;}
+        .bluecorner{order:2;}
+        .redcorner{order: 0;}
+        .prono{order: 1;}
+        .taleofthetape{order:0;}
+        .bloc{order:4;}
     }
 
-    .bluecorner {
-        order: 2;
-    }
-
-    .redcorner {
-        order: 0;
-    }
-
-    .prono {
-        order: 1;
-    }
-
-    .taleofthetape {
-        order: 0;
-    }
-
-    .bloc {
-        order: 4;
-    }
-}
 
 
 
