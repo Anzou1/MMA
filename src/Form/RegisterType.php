@@ -34,7 +34,7 @@ class RegisterType extends AbstractType
                 'first_options' =>['label'=>'Mot de passe',
                                     'attr' =>['placeholder'=>'Veuillez saisir votre mot de passe']],
                 'second_options'=>['label'=>'Confirmez votre mot de passe',
-                                   'attr' =>['placeholder'=>'Veuillez confirmé votre mot de passe']]])
+                                'attr' =>['placeholder'=>'Veuillez confirmé votre mot de passe']]])
 
             ->add('Photo', FileType::class, [
                 'label' => 'photo',

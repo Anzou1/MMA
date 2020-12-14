@@ -3,8 +3,15 @@
 {% block title %}Mes informations{% endblock %}
 
 {% block content %}
+    <style>
+        body {
+            background-color: #222;
+            color: white;
+        }
+    </style>
+
     <h1 class=" text-center " style="margin-top: 50px;">Mes informations</h1>
-    <a href="{{path('compte')}}">retour</a>
+        <div class="display-4 text-center  my-4"><a href="{{ path('compte') }}" class="btn btn-dark btn-lg">Retour</a></div>
         <div class="col-md-4 mx-auto formulaire">
         {% if notification %}
             <div class="alert alert-info">{{notification}}</div>
