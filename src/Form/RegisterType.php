@@ -21,6 +21,8 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('pseudo',TypeTextType::class,['constraints'=> new Length(['min'=>2,'max'=> 30]),'attr' =>['placeholder'=>'Entré votre Pseudo']])
+
             ->add('nom',TypeTextType::class,['constraints'=> new Length(['min'=>2,'max'=> 30]),'attr' =>['placeholder'=>'Entré votre Nom']])
 
             ->add('prenom',TypeTextType::class,['constraints'=> new Length(['min'=>2,'max'=> 30]),'attr' =>['placeholder'=>'Entré votre Prenom']])

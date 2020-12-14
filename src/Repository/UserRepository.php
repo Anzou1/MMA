@@ -3,11 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\NewClass\Recherche;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -20,6 +21,23 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
+    }
+
+    /**
+     * @requete pour recup les membres
+     * @return User[]
+     */
+    public function findWithRecherche(Recherche $recherche){
+        $query = $this
+        ->createQueryBuilder('u');
+
+
+        if(!empty($recherche->string)){
+            $query = $query
+            ->andWhere('u.pseudo LIKE :string')
+            ->setParameter('string',"%{$recherche->string}%");
+        }
+        return $query->getQuery()->getResult();
     }
 
     /**

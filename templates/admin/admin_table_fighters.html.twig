@@ -4,42 +4,60 @@
 {% endblock %}
 {% block content %}
 
-    <img src="assets/img/a.jpeg" alt="">
+	<img src="assets/img/a.jpeg" alt="">
 
-    <h1 class="display-4 text-center my-4">BackOffice | Gestion des combattants</h1>
+	<h1 class="display-4 text-center my-4">BackOffice | Gestion des combattants</h1>
 
-    <div class="display-4 text-center  my-4"><a href="{{ path('admin_new_fighter') }}" class="btn btn-dark btn-lg">Nouveau combattant</a></div>
+	<div class="display-4 text-center  my-4">
+		<a href="{{ path('admin_new_fighter') }}" class="btn btn-dark btn-lg">Nouveau combattant</a>
+	</div>
 
-    <table class="table table-striped table-bordered table-dark table-bordered text-center">
-        <tr>
-            {% for data in colonnes %}
-            <th class="bg-info">{{data|upper}}</th>
-            {% endfor %}
+	{{form(form)}}
 
-            <th class="bg-info">EDIT</th>
-            <th class="bg-info">SUPP</th>
-        </tr>
+		<table class="styled-table table text-center">
+			<thead>
+				<tr>
+					{% for data in colonnes %}
+						{% if data != 'password' %}
+							<th class="">{{data|upper }}</th>
+						{% endif %}
 
-        <tbody>
-            {% for data in fighters %}
-            <tr>
-                <td class="align-middle">{{ data.id }}</td>
-                <td class="align-middle">{{ data.name }}</td>
-                <td class="align-middle">{{ data.pays }}</td>
-                <td class="align-middle">{{ data.age }}</td>
-                <td class="align-middle">{{ data.poids}}</td>
-                <td class="align-middle">{{ data.taille}}</td>
-                <td class="align-middle">{{ data.allonge}}</td>
-                <td class="align-middle">{{ data.palmares}}</td>
-                <td class="align-middle"><img src="{{ asset('uploads/combattant/' ~ data.photo) }}" style="width:120px;"></td>
-                <td class="align-middle">{{ data.categorie[0] }}</td>
-                <td class="align-middle">{{ data.rang[0] }}</td>
-                <td class="align-middle">{{ data.sexe[0] }}</td>
-                <td class="align-middle"><a href="{{ path('admin_edit_fighter',{'id': data.id}) }}"><i class="far fa-edit text-warning"></i></a></td>
-                <td class="align-middle"><a onclick="return(confirm('Voulez vous vraiment supprimer cet membre ?'))" href="{{ path('admin_delete_fighters',{'id': data.id})}}"><i class="fas fa-trash-alt text-danger"></i></a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+					{% endfor %}
+					{# <th class="bg-info">PHOTO</th> #}
+					<th class="">EDIT</th>
+					<th class="">SUPPR</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for data in fighters %}
+					<tr class="active-row">
 
-{% endblock %}
+						<td class="align-middle">{{ data.id }}</td>
+						<td class="align-middle">{{ data.name }}</td>
+						<td class="align-middle">{{ data.pays }}</td>
+						<td class="align-middle">{{ data.age }}</td>
+						<td class="align-middle">{{ data.poids}}</td>
+						<td class="align-middle">{{ data.taille}}</td>
+						<td class="align-middle">{{ data.allonge}}</td>
+						<td class="align-middle">{{ data.palmares}}</td>
+						<td class="align-middle"><img src="{{ asset('uploads/combattant/' ~ data.photo) }}" style="width:120px;"></td>
+						<td class="align-middle">{{ data.categorie[0] }}</td>
+						<td class="align-middle">{{ data.rang[0] }}</td>
+						<td class="align-middle">{{ data.sexe[0] }}</td>
+
+						<td class="align-middle">
+							<a href="{{ path('admin_edit_membre', {'id': data.id}) }}">
+								<i class="btn btn-secondary far fa-edit text-warning"></i>
+							</a>
+						</td>
+						<td class="align-middle">
+							<a onclick="return(confirm('Voulez vous vraiment supprimer cet membre ?'))" href="{{ path('admin_delete_membre', {'id': data.id}) }}">
+								<i class="btn btn-secondary fas fa-trash-alt text-danger"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	{% endblock %}

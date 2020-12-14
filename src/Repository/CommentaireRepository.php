@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Commentaire;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\NewClass\Recherche;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Commentaire|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,23 @@ class CommentaireRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Commentaire::class);
+    }
+
+    /**
+     * @requete pour recup les membres
+     * @return Commentaire[]
+     */
+    public function findWithRecherche(Recherche $recherche){
+        $query = $this
+        ->createQueryBuilder('c');
+
+
+        if(!empty($recherche->string)){
+            $query = $query
+            ->andWhere('c.commentaires LIKE :string')
+            ->setParameter('string',"%{$recherche->string}%");
+        }
+        return $query->getQuery()->getResult();
     }
 
     // /**

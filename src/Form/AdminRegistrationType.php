@@ -16,6 +16,7 @@ class AdminRegistrationType extends AbstractType
         $builder
             ->add('email')
             // ->add('password')
+            ->add('pseudo')
             ->add('Prenom')
             ->add('Nom')
             ->add('roles', CollectionType::class, [
