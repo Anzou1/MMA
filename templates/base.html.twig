@@ -19,14 +19,14 @@
 
 		<style>
 
-		body{
+			body {
 
-			background:url('assets/img/a.jpeg');
-			background-size: cover;
-			background-repeat: no-repeat;
-			min-height: 100vh;
-			background-position: center;
-		}
+				background: url('assets/img/a.jpeg');
+				background-size: cover;
+				background-repeat: no-repeat;
+				min-height: 100vh;
+				background-position: center;
+			}
 			.im {
 				z-index: -1;
 				position: fixed;
@@ -55,7 +55,7 @@
 		<link href="{{asset('assets/css/carousel.css')}}" rel="stylesheet">
 	</head>
 	<body>
-	
+
 		<header>
 			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 				<a class="navbar-brand" href="{{path('home')}}"><img src="assets/img/mma.png" alt="" style="width:120px;"></a>
@@ -65,7 +65,9 @@
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active">
-							<a class="nav-link" href="{{path('home')}}"><i class="fas fa-home text-light"></i></a>
+							<a class="nav-link" href="{{path('home')}}">
+								<i class="fas fa-home text-light"></i>
+							</a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link" href="{{path('home')}}">Annonce</a>
@@ -76,17 +78,18 @@
 						<li class="nav-item active">
 							<a class="nav-link" href="{{path('home')}}">Pronos</a>
 						</li>
-						{% if is_granted('ROLE_ADMIN') %} 
+						{% if is_granted('ROLE_ADMIN') %}
 							<li class="nav-item dropdown" style="list-style:none">
 								<a class="nav-link dropdown-toggle" href="{{ path('admin') }}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Adminitration</a>
 								<div class="dropdown-menu" aria-labelledby="dropdown04">
-									<a class="dropdown-item" href="{{ path('admin') }}">Accueil </a>
+									<a class="dropdown-item" href="{{ path('admin') }}">Accueil
+									</a>
 									<a class="dropdown-item" href="{{ path('admin_membres') }}">Gestion des membres</a>
 									<a class="dropdown-item" href="{{ path('admin_fighters') }}">Gestion des combatants</a>
-									<a class="dropdown-item" href="{{ path('admin_forum') }}">Gestion du forum</a> 
+									<a class="dropdown-item" href="{{ path('admin_forum') }}">Gestion du forum</a>
 								</div>
 							</li>
-						{% endif %} 
+						{% endif %}
 					</ul>
 
 					<div class="navbar-conex">
@@ -100,7 +103,7 @@
 							|
 							<a href="{{path('register')}}">Inscription</a>
 						{% endif %}
-						
+
 					</div>
 				</div>
 			</nav>
@@ -120,9 +123,7 @@
 						<div class="carousel-item active">
 							<img class="bd-placeholder-img" width="100%" height="100%" src="http://cnmma.fr/wp-content/themes/wallstreet/images/page-header-bg.jpg" preserveaspectratio="xMidYMid slice" focusable="false" role="img">
 							<div class="container">
-								<div class="carousel-caption text-left">
-								
-								</div>
+								<div class="carousel-caption text-left"></div>
 							</div>
 						</div>
 						<div class="carousel-item">
@@ -162,7 +163,7 @@
 			{% endif %}
 
 			<!-- Marketing messaging and featurettes
-			================================================== -->
+									================================================== -->
 			<!-- Wrap the rest of the page in another container to center all the content. -->
 
 			<div class="container-fluid marketing"> {% block content %}{% endblock %}

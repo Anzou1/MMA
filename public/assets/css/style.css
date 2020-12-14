@@ -189,13 +189,15 @@ body {
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    
+
 }
+
 .styled-table thead tr {
     background-color: #318070;
     color: #ffffff;
 
 }
+
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
@@ -216,5 +218,5 @@ body {
 .styled-table tbody tr.active-row {
     font-weight: bold;
     color: #444;
-    border-radius:22px;
+    border-radius: 22px;
 }

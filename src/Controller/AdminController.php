@@ -70,7 +70,6 @@ class AdminController extends AbstractController
             'colonnes' => $colonnes,
             'membres' => $membres
         ]);
-
     }
 
     /**

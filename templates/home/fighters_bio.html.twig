@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %} BIOGRAPHIE DU COMBATTANT
+{% block title %}
+	BIOGRAPHIE DU COMBATTANT
 {% endblock %}
 
 {% block content %}
@@ -9,49 +10,59 @@
 
 	<h1 class="display-4 text-center my-4">BIOGRAPHIE DU COMBATTANT</h1>
 
-    <div class="display-4 text-center  my-4"><a href="{{ path('home') }}" class="btn btn-dark btn-lg">Retour</a></div>
+	<div class="display-4 text-center  my-4">
+		<a href="{{ path('home') }}" class="btn btn-dark btn-lg">Retour</a>
+	</div>
 
-    <div class="container">
+	<div class="container">
 
-        <div class="row display-flex">
+		<div class="row display-flex">
 
-            <div class="col-md-6"><img src="{{ asset('uploads/combattant/' ~ id.photo) }}" style="width:360px;"></div>
+			<div class="col-md-6"><img src="{{ asset('uploads/combattant/' ~ id.photo) }}" style="width:360px;"></div>
 
-            <div class="col-md-6 display-flex">
+			<div class="col-md-6 display-flex">
 
-                <table class="table ">
-                    <thead>
-                    <tr>
-                        <th>Nom Prenom: {{ id.name }}</th>
-                    </tr>
-                    </thead>
-                    
-                    <tbody>
-                    <tr>
-                        <th>RANG: {{ id.rang[0] }}</th>
-                        <th>PALMARES: {{ id.palmares}}</th>
-                    </tr>
-                    <tr>
-                        <td>Pays: {{ id.pays }}</td>
-                        <td>CATEGORIE: {{ id.categorie[0] }}</td>
-                        
-                        
-                    </tr>
-                    <tr>
-                        <td>POIDS: {{ id.poids}}</td>
-                        <td>AGE: {{ id.age }}</td>
-                    </tr>
-                    <tr>
-                        
-                        <td>TAILLE: {{ id.taille}}</td>
-                        <td>ALLONGE: {{ id.allonge}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </table>
-    </div>
+				<table class="table ">
+					<thead>
+						<tr>
+							<th>Nom Prenom:
+								{{ id.name }}</th>
+						</tr>
+					</thead>
 
+					<tbody>
+						<tr>
+							<th>RANG:
+								{{ id.rang[0] }}</th>
+							<th>PALMARES:
+								{{ id.palmares}}</th>
+						</tr>
+						<tr>
+							<td>Pays:
+								{{ id.pays }}</td>
+							<td>CATEGORIE:
+								{{ id.categorie[0] }}</td>
+
+
+						</tr>
+						<tr>
+							<td>POIDS:
+								{{ id.poids}}</td>
+							<td>AGE:
+								{{ id.age }}</td>
+						</tr>
+						<tr>
+
+							<td>TAILLE:
+								{{ id.taille}}</td>
+							<td>ALLONGE:
+								{{ id.allonge}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</table>
+	</div>
 
 
 {% endblock %}
