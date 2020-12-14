@@ -5,13 +5,13 @@
 {% block content %}
 
 	<h1 class="display-3 text-center my-3">BackOffice | Gestion du forum</h1>
-<hr>
+	<hr>
 	<h2 class="display-5 text-center my-5">BackOffice | Gestion des discussions
 	</h2>
 
 	{{ form_start(formDiscu, {'attr': {'class': 'col-md-6 mx-auto'}}) }}
-		{{ form_row(formDiscu.titre, {'label': "Nouvelle discussion. Titre : ", 'attr':{'rows':5} }) }}
-		<button type="submit" class="btn btn-success">Créer une discussion</button>
+	{{ form_row(formDiscu.titre, {'label': "Nouvelle discussion. Titre : ", 'attr':{'rows':5} }) }}
+	<button type="submit" class="btn btn-success">Créer une discussion</button>
 	{{ form_end(formDiscu) }}
 	<br>
 	{% for label, messages in app.flashes(['danger', 'success', 'warning','info','light','dark', 'primary', 'secondary']) %}
@@ -67,11 +67,13 @@
 			{% endfor %}
 		</tbody>
 	</table>
-<hr>
+	<hr>
 	<h2 class="display-5 text-center my-5">BackOffice | Gestion des commentaires</h2>
 
 
-	{{form(form)}}
+	<div class="col-md-2">
+		{{form(form)}}
+		</div>
 
 		<table class="styled-table table text-center">
 			<thead>

@@ -1,25 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MMA| Gestion des Commentaires{% endblock %}
-
+{% block title %}MMA| Gestion des Commentaires
+{% endblock %}
 
 
 {% block content %}
-    <style>
-        body {
-            background-color: #222;
-            color: white;
-        }
-    </style>
+	<style>
+		body {
+			background-color: #222;
+			color: white;
+		}
+	</style>
 
-    <h1 class="display-4 text-center my-4">Back office | Modification Commentaires</h1>
-    
-    <h4 class="text-center">Bienvenue <span class="text-info">{{app.user.prenom}}</span> dans votre <span class="text-danger">BACK OFFICE</span></h4>
+	<h1 class="display-4 text-center my-4">Back office | Modification Commentaires</h1>
+
+	<h4 class="text-center">Bienvenue
+		<span class="text-info">{{app.user.prenom}}</span>
+		dans votre
+		<span class="text-danger">BACK OFFICE</span>
+	</h4>
 
 
-    {{ form_start(formCom, {'attr': {'class': 'col-md-6 mx-auto'}}) }}
-            {{ form_row(formCom.commentaires, {'label': "Contenu du commentaire", 'attr':{'rows':15} }) }}
-            <button type="submit" class="btn btn-primary">Modifier le commentaire</button>
-        {{ form_end(formCom) }}
+	{{ form_start(formCom, {'attr': {'class': 'col-md-6 mx-auto'}}) }}
+	{{ form_row(formCom.commentaires, {'label': "Contenu du commentaire", 'attr':{'rows':15} }) }}
+	<button type="submit" class="btn btn-primary">Modifier le commentaire</button>
+	{{ form_end(formCom) }}
 
 {% endblock %}
