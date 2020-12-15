@@ -50,7 +50,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-       /**
+    /**
      * @Route("/home/horaire", name="horaire")
      */
     public function horaire(EntityManagerInterface $manager): Response

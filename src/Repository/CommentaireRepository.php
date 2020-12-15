@@ -24,15 +24,16 @@ class CommentaireRepository extends ServiceEntityRepository
      * @requete pour recup les membres
      * @return Commentaire[]
      */
-    public function findWithRecherche(Recherche $recherche){
+    public function findWithRecherche(Recherche $recherche)
+    {
         $query = $this
-        ->createQueryBuilder('c');
+            ->createQueryBuilder('c');
 
 
-        if(!empty($recherche->string)){
+        if (!empty($recherche->string)) {
             $query = $query
-            ->andWhere('c.commentaires LIKE :string')
-            ->setParameter('string',"%{$recherche->string}%");
+                ->andWhere('c.commentaires LIKE :string')
+                ->setParameter('string', "%{$recherche->string}%");
         }
         return $query->getQuery()->getResult();
     }

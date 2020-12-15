@@ -27,15 +27,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * @requete pour recup les membres
      * @return User[]
      */
-    public function findWithRecherche(Recherche $recherche){
+    public function findWithRecherche(Recherche $recherche)
+    {
         $query = $this
-        ->createQueryBuilder('u');
+            ->createQueryBuilder('u');
 
 
-        if(!empty($recherche->string)){
+        if (!empty($recherche->string)) {
             $query = $query
-            ->andWhere('u.pseudo LIKE :string')
-            ->setParameter('string',"%{$recherche->string}%");
+                ->andWhere('u.pseudo LIKE :string')
+                ->setParameter('string', "%{$recherche->string}%");
         }
         return $query->getQuery()->getResult();
     }

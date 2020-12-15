@@ -18,7 +18,7 @@ class ChangeInfosType extends AbstractType
     {
         $builder
             ->add('pseudo', TypeTextType::class, [
-            'disabled' => true
+                'disabled' => true
             ])
             ->add('Prenom', TypeTextType::class, [
                 'disabled' => true

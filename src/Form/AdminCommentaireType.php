@@ -16,7 +16,6 @@ class AdminCommentaireType extends AbstractType
     {
         $builder
             ->add('commentaires');
-            
     }
 
     public function configureOptions(OptionsResolver $resolver)
