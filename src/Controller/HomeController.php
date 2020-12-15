@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Fighters;
+use App\Entity\Discussion;
 use App\Repository\FightersRepository;
+use App\Repository\DiscussionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,18 +15,23 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
+     * @Route("/home/{id}/{name}", name="tale")
      */
-    public function index(EntityManagerInterface $manager, FightersRepository $repo): Response
+    public function index(EntityManagerInterface $manager, FightersRepository $repo, DiscussionRepository $repository, Fighters $rouge, Fighters $bleu): Response
     {
         $fighters = $manager->getClassMetadata(Fighters::class)->getFieldNames();
         $name = $repo->findAll();
 
+        $allDiscussion = $repository->findAll();
+        $colonnes = $manager->getClassMetadata(Discussion::class)->getFieldNames();
 
         return $this->render('home/index.html.twig', [
             'name' => $name,
             'fighters' => $fighters,
-
-
+            'allDiscussion' => $allDiscussion,
+            'colonnes' => $colonnes,
+            'rouge' => $rouge,
+            'bleu' => $bleu
         ]);
     }
 

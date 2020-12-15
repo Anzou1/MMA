@@ -118,8 +118,6 @@ class AdminController extends AbstractController
 
 
 
-
-
     /**
      * @Route("/admin/fighters", name="admin_fighters")
      * 
