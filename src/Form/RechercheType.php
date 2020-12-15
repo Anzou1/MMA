@@ -13,21 +13,22 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class RechercheType extends AbstractType{
+class RechercheType extends AbstractType
+{
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('string',TextType::class,['label'=>'Recherche','required'=>false,'attr'=>['placeholder'=>'Que voulez-vous chercher ?']])
-            ->add('submit',SubmitType::class,[
-                'label'=>'Recherche'])
-        ;
+            ->add('string', TextType::class, ['label' => 'Recherche', 'required' => false, 'attr' => ['placeholder' => 'Que voulez-vous chercher ?']])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Recherche'
+            ]);
     }
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Recherche::class,
-            'method'=>'GET'
+            'method' => 'GET'
 
         ]);
     }
@@ -36,6 +37,4 @@ class RechercheType extends AbstractType{
     {
         return '';
     }
-
-
 }

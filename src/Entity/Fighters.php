@@ -74,7 +74,7 @@ class Fighters
      */
     private $sexe = ["Homme"];
 
-   
+
     public function getId(): ?int
     {
         return $this->id;
@@ -211,5 +211,4 @@ class Fighters
 
         return $this;
     }
-
 }
