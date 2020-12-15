@@ -52,4 +52,14 @@ class HomeController extends AbstractController
 
         ]);
     }
+
+    /**
+     * @Route("/home/horaire", name="horaire")
+     */
+    public function horaire(EntityManagerInterface $manager): Response
+    {
+        $fighters = $manager->getClassMetadata(Fighters::class)->getFieldNames();
+
+        return $this->render('/home/horaire.html.twig');
+    }
 }
