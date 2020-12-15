@@ -45,8 +45,9 @@ body {
 
 .annonce
 {
-    height: 480px;
+    height: 680px;
     width: 100%;
+   
 }
 
 .textcolonnetale 
@@ -77,15 +78,17 @@ height: auto;
 .forum
 {
     height: 480px;
-    background-color:red;
+    background-color:white;
     width: 100%;
+    overflow: auto;
 }
 
 .top15
 {
-    height: 480px;
-    background-color:white;
+    height: 680px;
+    /* background-color:white; ne pas effacer */
     width: 100%;
+    overflow: auto;
 }
     .entbanner{
         height: 25px;
@@ -93,9 +96,8 @@ height: auto;
         width: 100%; 
     }
 .entertainment{
-    height: 400px;
+    height: 480px;
     
-    width: 100%;
 }
 
 .tofhetapetitle{
