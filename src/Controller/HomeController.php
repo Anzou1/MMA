@@ -22,7 +22,7 @@ class HomeController extends AbstractController
 
 
     /**
-    * @Route("/fighters", name="tale")
+    * @Route("/", name="tale")
     * @Route("/", name="home")
     */
     public function index(EntityManagerInterface $manager, FightersRepository $repo, DiscussionRepository $repository, Request $request): Response
