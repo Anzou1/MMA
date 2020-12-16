@@ -21,17 +21,17 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo', TypeTextType::class, ['constraints' => new Length(['min' => 2, 'max' => 30]), 'attr' => ['placeholder' => 'Entré votre Pseudo']])
+            ->add('pseudo', TypeTextType::class, ['constraints' => new Length(['min' => 2, 'max' => 30]), 'attr' => ['placeholder' => 'Entrez votre Pseudo']])
 
-            ->add('nom', TypeTextType::class, ['constraints' => new Length(['min' => 2, 'max' => 30]), 'attr' => ['placeholder' => 'Entré votre Nom']])
+            ->add('nom', TypeTextType::class, ['constraints' => new Length(['min' => 2, 'max' => 30]), 'attr' => ['placeholder' => 'Entrez votre Nom']])
 
-            ->add('prenom', TypeTextType::class, ['constraints' => new Length(['min' => 2, 'max' => 30]), 'attr' => ['placeholder' => 'Entré votre Prenom']])
+            ->add('prenom', TypeTextType::class, ['constraints' => new Length(['min' => 2, 'max' => 30]), 'attr' => ['placeholder' => 'Entrez votre Prenom']])
 
-            ->add('email', EmailType::class, ['attr' => ['placeholder' => 'Entré votre Email']])
+            ->add('email', EmailType::class, ['attr' => ['placeholder' => 'Entrez votre Email']])
 
             ->add('password', RepeatedType::class, [
                 'type' => passwordType::class,
-                'invalid_message' => 'Le mots de passe ne correspond pas',
+                'invalid_message' => 'Le mot de passe ne correspond pas',
                 'required' => true,
                 'first_options' => [
                     'label' => 'Mot de passe',
@@ -39,19 +39,19 @@ class RegisterType extends AbstractType
                 ],
                 'second_options' => [
                     'label' => 'Confirmez votre mot de passe',
-                    'attr' => ['placeholder' => 'Veuillez confirmé votre mot de passe']
+                    'attr' => ['placeholder' => 'Veuillez confirmer votre mot de passe']
                 ]
             ])
 
             ->add('Photo', FileType::class, [
-                'label' => 'photo',
-                'attr' => ['placeholder' => 'Telecharger votre avatar'],
+                'label' => 'Photo',
+                'attr' => ['placeholder' => 'Téléchargez votre avatar'],
                 'mapped' => false,
                 'required' => false,
             ])
 
             ->add('submit', SubmitType::class, [
-                'label' => 'inscription'
+                'label' => 'Inscription'
             ]);
     }
 

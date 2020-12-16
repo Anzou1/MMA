@@ -23,7 +23,8 @@ body {
     z-index: 10;
 }
 
-/* Declare heights because of positioning of img element */
+/* Declare heights because of positioning of img element 
+ici la zone du carousel*/
 .carousel-item {
     height: 32rem;
 }
