@@ -12,9 +12,7 @@ class AdminDiscussionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre')
-            
-        ;
+            ->add('titre');
     }
 
     public function configureOptions(OptionsResolver $resolver)

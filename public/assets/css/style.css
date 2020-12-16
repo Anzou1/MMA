@@ -26,81 +26,78 @@ body {
 }
 
 
- /* AJOUT HOME CYRIL 09/12/2020 */
+/* AJOUT HOME CYRIL 09/12/2020 */
 
-.instagram{
+.instagram {
     background-color: red;
 }
 
-.fightername
-{
-    font-family: 'Anton', sans-serif; 
+.fightername {
+    font-family: 'Anton', sans-serif;
     font-size: 2vw;
 }
 
-.underbanner{
+.underbanner {
     height: 77px;
     width: 100%;
 }
 
-.annonce
-{
+.annonce {
     height: 680px;
     width: 100%;
-   
 }
 
-.textcolonnetale 
-{
+.textcolonnetale {
     font-family: 'Anton', sans-serif;
     color: white;
-    background-color: #ffc107;;
+    background-color: #ffc107;
+    ;
     border-radius: 2px;
 }
 
-#myCarousel
-{
-width: 100%;
-height: auto;
+#myCarousel {
+    width: 100%;
+    height: auto;
 }
 
-.prono
-{
+.prono {
     height: 480px;
     width: 100%;
 }
 
-.bloc
-{
+.bloc {
     height: 100px;
-}  
+}
 
-.forum
-{
+.forum {
     height: 480px;
-    background-color:white;
+    background-color: white;
     width: 100%;
     overflow: auto;
+    padding: 0px !important;
+
 }
 
-.top15
-{
+
+.top15 {
     height: 680px;
     /* background-color:white; ne pas effacer */
     width: 100%;
     overflow: auto;
 }
-    .entbanner{
-        height: 25px;
-        background-color: black;
-        width: 100%; 
-    }
-.entertainment{
-    height: 480px;
-    
+
+.entbanner {
+    height: 25px;
+    background-color: black;
+    width: 100%;
 }
 
-.tofhetapetitle{
+.entertainment {
+    height: 480px;
+
+}
+
+.tofhetapetitle {
     text-align: center;
     font-size: 2.8vw;
     font-family: 'Anton', sans-serif;
@@ -108,35 +105,49 @@ height: auto;
     background-color: #ffc107;
 }
 
-.bluecorner
-{ 
-    width:79%;
+.bluecorner {
+    width: 79%;
 }
 
-.redcorner
-{
-    width:79%;
+.redcorner {
+    width: 79%;
     transform: scaleX(-1);
 }
 
-.ranking
-{
+.ranking {
     text-align: center;
 }
 
 
- /* *******media queries telephone***********/
+/* *******media queries telephone***********/
 
 
 
-    @media screen and (max-width: 619px) {
-        .annonce{order:1;}
-        .bluecorner{order:2;}
-        .redcorner{order: 0;}
-        .prono{order: 1;}
-        .taleofthetape{order:0;}
-        .bloc{order:4;}
+@media screen and (max-width: 619px) {
+    .annonce {
+        order: 1;
     }
+
+    .bluecorner {
+        order: 2;
+    }
+
+    .redcorner {
+        order: 0;
+    }
+
+    .prono {
+        order: 1;
+    }
+
+    .taleofthetape {
+        order: 0;
+    }
+
+    .bloc {
+        order: 4;
+    }
+}
 
 
 

@@ -18,22 +18,22 @@ class FightersRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Fighters::class);
-        
     }
 
     /**
      * @requete pour recup les fighters
      * @return Fighters[]
      */
-    public function findWithRecherche(Recherche $recherche){
+    public function findWithRecherche(Recherche $recherche)
+    {
         $query = $this
-        ->createQueryBuilder('f');
+            ->createQueryBuilder('f');
 
 
-        if(!empty($recherche->string)){
+        if (!empty($recherche->string)) {
             $query = $query
-            ->andWhere('f.name LIKE :string')
-            ->setParameter('string',"%{$recherche->string}%");
+                ->andWhere('f.name LIKE :string')
+                ->setParameter('string', "%{$recherche->string}%");
         }
         return $query->getQuery()->getResult();
     }

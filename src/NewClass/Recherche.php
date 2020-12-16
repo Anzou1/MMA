@@ -9,8 +9,7 @@ use App\Entity\User;
 class Recherche
 {
     /**
-    * @var string
-    */
+     * @var string
+     */
     public $string = '';
-
 }

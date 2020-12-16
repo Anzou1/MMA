@@ -22,10 +22,12 @@ class HomeController extends AbstractController
 
 
     /**
-     * @Route("/", name="home")
-     * @Route("/fighters", name="tale")
-     */
+    * @Route("/", name="home")
+    * @Route("/fighters", name="tale")
+    */
     public function index(EntityManagerInterface $manager, FightersRepository $repo, DiscussionRepository $repository,Request $request): Response
+    
+
     {
         $f1 = $request->request->get('admin_tale')['name'];
         $f2 = $request->request->get('admin_tale')['id'];
@@ -49,7 +51,6 @@ class HomeController extends AbstractController
             'colonnes' => $colonnes,
             'redcorner' => $redcorner,
             'bluecorner' => $bluecorner
-           
         ]);
     }
 
@@ -76,7 +77,7 @@ class HomeController extends AbstractController
      */
     public function horaire(EntityManagerInterface $manager): Response
     {
-        $fighters = $manager->getClassMetadata(Fighters::class)->getFieldNames();
+
 
         return $this->render('/home/horaire.html.twig');
     }

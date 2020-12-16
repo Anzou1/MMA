@@ -28,8 +28,7 @@ class AdminRegistrationType extends AbstractType
                         'Administrateur' => 'ROLE_ADMIN'
                     ]
                 ]
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

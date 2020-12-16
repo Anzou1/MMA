@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block title %}MMADDICT | Forum {% endblock %}
+{% block title %}MMADDICT | Forum
+{% endblock %}
 {% block content %}
 
 	<div class="row">
@@ -10,7 +11,6 @@
 					<h3 class="mb-0">{{ discussion.titre }}</h3>
 					<div class="mb-1 text-muted">{{ discussion.date|date('d/m/Y à H:i:s') }}</div>
 					<p class="card-text mb-auto"></p>
-
 					<small class="col-md-4 ml-5 text-center btn btn-dark ">
 						<a class="dropdown-item text-white" href="#comment">Ajouter un commentaire</a>
 					</small>
