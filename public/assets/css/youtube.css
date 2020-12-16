@@ -53,6 +53,8 @@
     position: relative;
 }
 
+/* ICI ON REGLE LA TAILLE DE L ECRAN YOUTUBE REPONSIVE */
+
 .td_wrapper_video_playlist .td_video_controls_playlist_wrapper:before {
     content: '';
     background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAGBAMAAADwPukCAAAAElBMVEUAAAAAAAAAAAAAAAAAAAAAAADgKxmiAAAABnRSTlM9KRgMBADiSB2HAAAAFElEQVR4XmNgYBBgUGAwYHBgCAAAA3wA8fpXm6EAAAAASUVORK5CYII=') repeat-x;
