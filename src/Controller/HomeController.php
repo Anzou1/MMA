@@ -31,8 +31,8 @@ class HomeController extends AbstractController
     {
 
       
-        $redcorner = $repo->find(1);
-        $bluecorner = $repo->find(3);
+        $redcorner = $repo->find(6);
+        $bluecorner = $repo->find(7);
         
         if($request->request->get('admin_tale') ){
         $f1 = $request->request->get('admin_tale')['name'];

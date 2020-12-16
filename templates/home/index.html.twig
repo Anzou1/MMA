@@ -125,8 +125,14 @@
 							<td class="align-middle">{{ data.date|date('d/m/Y') }}</td>
 
 							<td class="align-middle">
+							{% if app.user %}
 								<a href="{{ path('forum_home', {'id': data.id}) }}">
 									<i class="btn btn border fas fa-eye regular"></i>
+							{% else %}
+								<a href="{{ path('app_login') }}">
+									<i class="btn btn border fas fa-eye regular"></i>
+							{% endif %}
+								
 								</td>
 							</td>
 						</tr>
