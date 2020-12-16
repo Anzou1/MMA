@@ -29,12 +29,23 @@ class HomeController extends AbstractController
     
 
     {
+
+        $redcorner = $repo->find(1);
+        $bluecorner = $repo->find(3);
+        
+        if(!$request){
         $f1 = $request->request->get('admin_tale')['name'];
         $f2 = $request->request->get('admin_tale')['id'];
-
-       
+        
         $redcorner = $repo->find($f1);
         $bluecorner = $repo->find($f2);
+
+        }
+
+
+        dump($redcorner);
+
+        
 
         $fighters = $manager->getClassMetadata(Fighters::class)->getFieldNames();
         $name = $repo->findAll();
