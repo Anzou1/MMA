@@ -22,18 +22,19 @@ class HomeController extends AbstractController
 
 
     /**
-    * @Route("/", name="home")
     * @Route("/fighters", name="tale")
+    * @Route("/", name="home")
     */
-    public function index(EntityManagerInterface $manager, FightersRepository $repo, DiscussionRepository $repository,Request $request): Response
+    public function index(EntityManagerInterface $manager, FightersRepository $repo, DiscussionRepository $repository, Request $request): Response
     
 
     {
 
+      
         $redcorner = $repo->find(1);
         $bluecorner = $repo->find(3);
         
-        if(!$request){
+        if($request->request->get('admin_tale') ){
         $f1 = $request->request->get('admin_tale')['name'];
         $f2 = $request->request->get('admin_tale')['id'];
         
@@ -43,7 +44,7 @@ class HomeController extends AbstractController
         }
 
 
-        dump($redcorner);
+        dump($request);
 
         
 
