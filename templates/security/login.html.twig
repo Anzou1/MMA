@@ -3,7 +3,7 @@
 {% block title %}Connexion{% endblock %}
 
 {% block content %}
-    <h1 class="h3 mb-3 font-weight-normal text-center " style="margin-top: 22px;">Connexion</h1>
+    <h1 class="h3 mb-3 font-weight-normal text-center text-light" style="margin-top: 22px;">Connexion</h1>
 
     <div class="col-md-4 mx-auto formulaire">
     <form method="post">
@@ -17,9 +17,9 @@
             </div>
         {% endif %}
 
-        <label for="inputEmail">Email</label>
+        <label for="inputEmail" class=" text-light">Email</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-        <label for="inputPassword">Mot de passe</label>
+        <label for="inputPassword" class=" text-light">Mot de passe</label>
         <input type="password" name="password" id="inputPassword" class="form-control" required>
         
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
@@ -38,6 +38,7 @@
         <button class="btn btn-sm btn-dark" type="submit">
             Connexion
         </button>
+        <a href="" class="btn btn-primary">Connexion avec Google</a>
     </form>
     </div>
 {% endblock %}

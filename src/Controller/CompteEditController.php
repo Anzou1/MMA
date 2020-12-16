@@ -42,9 +42,9 @@ class CompteEditController extends AbstractController
 
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();
-                $notification = 'Votre mot de passe à etait mis à jour.';
+                $notification = 'Votre mot de passe a était mis à jour.';
             } else {
-                $notification = "votre mot de passe actuel n'est pas le bon";
+                $notification = "Votre mot de passe actuel n'est pas le bon";
             }
         }
         return $this->render('compte/edit.html.twig', [

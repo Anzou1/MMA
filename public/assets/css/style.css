@@ -45,13 +45,20 @@ body {
 .annonce {
     height: 680px;
     width: 100%;
+    background-color: white;
+    
 }
 
+.annoncetext{
+   
+    text-align: center;
+    color: black;
+}
 .textcolonnetale {
     font-family: 'Anton', sans-serif;
     color: white;
     background-color: #ffc107;
-    ;
+
     border-radius: 2px;
 }
 
@@ -63,6 +70,7 @@ body {
 .prono {
     height: 480px;
     width: 100%;
+    overflow: auto;
 }
 
 .bloc {
