@@ -60,7 +60,6 @@ body {
     font-family: 'Anton', sans-serif;
     color: white;
     background-color: #ffc107;
-
     border-radius: 2px;
 }
 
@@ -157,6 +156,8 @@ body {
     .bloc {
         order: 4;
     }
+
+    
 }
 
 
