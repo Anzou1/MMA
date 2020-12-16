@@ -148,7 +148,9 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $fighters = $this->entityManager->getRepository(Fighters::class)->findWithRecherche($recherche);
+
         }
+        
         return $this->render('admin/admin_table_fighters.html.twig', [
             'fighters' => $fighters,
             'form' => $form->createView(),
