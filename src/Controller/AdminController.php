@@ -200,7 +200,7 @@ class AdminController extends AbstractController
 
 
 
-            $this->addFlash('success', "Le combatant a bien été modifié");
+            $this->addFlash('success', "Le combattant a bien été modifié");
 
             $manager->persist($fighters);
             $manager->flush();
