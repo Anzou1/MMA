@@ -13,6 +13,7 @@ use App\Form\AdminDiscussionType;
 use App\Form\AdminCommentaireType;
 use App\Repository\UserRepository;
 use App\Form\AdminRegistrationType;
+use App\Form\AdminTaleType;
 use App\Repository\FightersRepository;
 use App\Repository\DiscussionRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -120,22 +121,31 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/fighters", name="admin_fighters")
-     * 
      */
     public function fighters(EntityManagerInterface $manager, FightersRepository $repo, Request $request): Response
     {
+        
 
         $colonnes = $manager->getClassMetadata(Fighters::class)->getFieldNames();
 
 
         $fighters = $repo->findAll();
+        $fighter = new Fighters;
+
+        $formTale = $this->createForm(AdminTaleType::class, $fighter);
+        $formTale->handleRequest($request);
+        dump($formTale);
+
+       
+        
+       
 
         $fighters = $this->entityManager->getRepository(Fighters::class)->findAll();
         $recherche = new Recherche();
 
         $form = $this->createForm(RechercheType::class, $recherche);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $fighters = $this->entityManager->getRepository(Fighters::class)->findWithRecherche($recherche);
         }
@@ -143,9 +153,11 @@ class AdminController extends AbstractController
             'fighters' => $fighters,
             'form' => $form->createView(),
             'colonnes' => $colonnes,
-            'fighters' => $fighters
+            'fighter' => $fighter,           
+            'formTale' => $formTale->createView() 
         ]);
     }
+    
     /**
      * @Route("/admin/fighter/new", name="admin_new_fighter")
      * @Route("/admin/{id}/edit_fighter", name="admin_edit_fighter")
@@ -157,7 +169,6 @@ class AdminController extends AbstractController
         }
         $form = $this->createForm(AdminFighterType::class, $fighters);
         $form->handleRequest($request);
-
 
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -197,7 +208,7 @@ class AdminController extends AbstractController
 
         return $this->render('admin/admin_edit_fighter.html.twig', [
             'formFighters'  => $form->createView(),
-            'editMode' => $fighters->getId()
+            'editMode' => $fighters->getId(),
         ]);
     }
 
