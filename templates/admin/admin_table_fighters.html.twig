@@ -13,12 +13,26 @@
 
 	</div>
 
-	<div class="col-md-2">
-		{{form(form)}}
+	{% for message in app.flashes('success') %}
+		<div class="bg-success text-white text-center col-md-4 mx-auto rounded p-3 m-4">
+			{{ message }}
 		</div>
+	{% endfor %}
+
+	<div class="col-md-6">
+		{{ form_start(form) }}
+		{{ form_end(form) }}
+
+		
+		</div>
+		
+		{{ form_start(formTale, {'action': path('tale'), 'method': 'POST'}) }}
+			<button type="submit" class="btn btn-secondary table  col-md-12">Tale of the tape</button>
+		{{ form_end(formTale) }}
+
+		
 
 		<table class="styled-table table text-center">
-			<thead>
 				<tr>
 					{% for data in colonnes %}
 						{% if data != 'password' %}
@@ -29,12 +43,10 @@
 					{# <th class="bg-info">PHOTO</th> #}
 					<th class="">EDIT</th>
 					<th class="">SUPPR</th>
-					<th class="">ROUGE</th>
-					<th class="">BLEU</th>
-
+					
 				</tr>
-			</thead>
-			<tbody>
+			
+		
 				{% for data in fighters %}
 					<tr class="active-row">
 
@@ -60,10 +72,10 @@
 							<a onclick="return(confirm('Voulez-vous vraiment supprimer ce combattant ?'))" href="{{ path('admin_delete_fighters', {'id': data.id}) }}">
 								<i class="btn btn-secondary fas fa-trash-alt text-danger"></i>
 							</a>
-						</td>
+						</td>				
 					</tr>
 				{% endfor %}
-			</tbody>
+			
 		</table>
 
 	{% endblock %}

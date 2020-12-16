@@ -10,11 +10,7 @@
 	<h1 class="display-4 text-center my-4">BackOffice | Gestion des membres</h1>
 
 
-	{% for message in app.flashes('success') %}
-		<div class="bg-success text-white text-center col-md-4 mx-auto rounded p-3 m-4">
-			{{ message }}
-		</div>
-	{% endfor %}
+	
 	<div class="col-md-2">
 		{{form(form)}}
 		</div>

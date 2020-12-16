@@ -61,7 +61,7 @@ class AdminFighterType extends AbstractType
             ])
             ->add('photo', FileType::class, [
                 'label' => 'photo',
-                'attr' => ['placeholder' => 'Telecharger combatant'],
+                'attr' => ['placeholder' => 'Telecharger combattant'],
                 'mapped' => false,
                 'required' => false,
             ])

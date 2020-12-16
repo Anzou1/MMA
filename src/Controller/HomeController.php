@@ -10,25 +10,59 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends AbstractController
 {
-    /**
-     * @Route("/", name="home")
-     */
-    public function index(EntityManagerInterface $manager, FightersRepository $repo, DiscussionRepository $repository): Response
+    public function __construct(EntityManagerInterface $entityManager)
     {
+        $this->entityManager = $entityManager;
+    }
+    
+
+
+    /**
+    * @Route("/fighters", name="tale")
+    * @Route("/", name="home")
+    */
+    public function index(EntityManagerInterface $manager, FightersRepository $repo, DiscussionRepository $repository, Request $request): Response
+    
+
+    {
+
+      
+        $redcorner = $repo->find(1);
+        $bluecorner = $repo->find(3);
+        
+        if($request->request->get('admin_tale') ){
+        $f1 = $request->request->get('admin_tale')['name'];
+        $f2 = $request->request->get('admin_tale')['id'];
+        
+        $redcorner = $repo->find($f1);
+        $bluecorner = $repo->find($f2);
+
+        }
+
+
+        dump($request);
+
+        
+
         $fighters = $manager->getClassMetadata(Fighters::class)->getFieldNames();
         $name = $repo->findAll();
 
         $allDiscussion = $repository->findAll();
         $colonnes = $manager->getClassMetadata(Discussion::class)->getFieldNames();
 
+       
+
         return $this->render('home/index.html.twig', [
             'name' => $name,
             'fighters' => $fighters,
             'allDiscussion' => $allDiscussion,
             'colonnes' => $colonnes,
+            'redcorner' => $redcorner,
+            'bluecorner' => $bluecorner
         ]);
     }
 
@@ -41,7 +75,7 @@ class HomeController extends AbstractController
         $fighters = $manager->getClassMetadata(Fighters::class)->getFieldNames();
 
 
-        dump($id);
+      
 
         return $this->render('/home/fighters_bio.html.twig', [
             'id' => $id,
