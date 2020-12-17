@@ -12,6 +12,7 @@
 		</title>
 		<link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 		<link href="{{asset('assets/css/youtube.css')}}" rel="stylesheet">
+		<link rel="shortcut icon" type="image/png" href="{{asset('assets/img/combattant.png')}}"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link
@@ -22,11 +23,13 @@
 
 		<style>
 			body {
-				background-color:black;
+				background-image: url(../assets/img/custom_bg.png);
+				background-color: white;
+
 				background-size: cover;
-				background-repeat: no-repeat;
+				background-repeat: repeat-x;
 				min-height: 100vh;
-				background-position: center;
+			
 			}
 			.im {
 				z-index: -1;
@@ -47,7 +50,7 @@
 			}
 			.navbar {
 				/* position: fixed !important; */
-				background-color: rgba(0, 0, 0, 0.884) !important;
+				background-color: black !important;
 			}
 		</style>
 		<!-- Custom styles for this template -->
@@ -70,16 +73,16 @@
 							</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="{{path('forum_forum')}}">Forum</a>
+							<a class="nav-link" href="{{path('forum_forum')}}">FORUM</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="{{path('horaire')}}">Horaires</a>
+							<a class="nav-link" href="{{path('horaire')}}">HORAIRES</a>
 						</li>
 						{% if is_granted('ROLE_ADMIN') %}
 							<li class="nav-item dropdown" style="list-style:none">
 								<a class="nav-link dropdown-toggle" href="{{ path('admin') }}" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
 								<div class="dropdown-menu" aria-labelledby="dropdown04">
-									<a class="dropdown-item" href="{{ path('admin') }}">Accueil
+									<a class="dropdown-item" href="{{ path('admin') }}">ACCUEIL
 									</a>
 									<a class="dropdown-item" href="{{ path('admin_membres') }}">Gestion des membres</a>
 									<a class="dropdown-item" href="{{ path('admin_fighters') }}">Gestion des combattants</a>

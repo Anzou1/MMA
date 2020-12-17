@@ -11,14 +11,13 @@
 					<h3 class="mb-0">{{ discussion.titre }}</h3>
 					<div class="mb-1 text-muted">{{ discussion.date|date('d/m/Y à H:i:s') }}</div>
 					<p class="card-text mb-auto"></p>
-					<small class="col-md-4 ml-5 text-center btn btn-dark ">
-						<a class="dropdown-item text-white" href="#comment">Ajouter un commentaire</a>
-					</small>
+	
 				</div>
 			</div>
 		</div>
 
 	</div>
+
 	{% for label, messages in app.flashes(['danger', 'success', 'warning','info','light','dark', 'primary', 'secondary']) %}
 
 		{% for message in messages %}
@@ -29,23 +28,27 @@
 		{% endfor %}
 
 	{% endfor %}
+	{{ form_start(formulaire, {'attr': {'class': 'col-md-7 mx-auto', 'id': 'comment'} }) }}
+	{{ form_row(formulaire.commentaires, {'attr': {'placeholder': 'Message'}}
+	) }}
+	<button type="submit" class="col-md-3 col-ms-3 mx-auto ml-5 text-center btn btn-dark p-2">Posté le commentaire</a>
+</button>
 
-	<table class="table table-dark table-bordered text-center">
+{{ form_end(formulaire) }}
+<br>
+	<table class="styled-table table text-center">
 		{% for comment in allComment %}
 			{% if  discussion.id == comment.discussion.id %}
-				<tr>
-					<td>{{ comment.user.nom }}.
-						{{ comment.user.prenom }}</td>
-					<td>{{ comment.date|date('d/m/Y à H:i:s') }}</td>
-					<td>{{ comment.commentaires }}</td>
+				<tr>	
+					<td class="align-middle"> <img class="com " src="{{ asset('uploads/photo/' ~ comment.user.photo) }}">
+						{{ comment.user.pseudo }}</td>
+					<td class="align-middle border-right">{{ comment.date|date('d/m/Y à H:i:s') }}</td>
+					<td class="align-middle">{{ comment.commentaires }}</td>
 				</tr>
 			{% endif %}
 		{% endfor %}
 	</table>
 
-	{{ form_start(formulaire, {'attr': {'class': 'col-md-7 mx-auto', 'id': 'comment'} }) }}
-	{{ form_row(formulaire.commentaires, {'attr': {'placeholder': 'Message'}}
-	) }}
-	<button type="submit" class="col-md-4 ml-5 text-center btn btn-dark ">Posté le commentaire</a>
-</button>
-{{ form_end(formulaire) }}{% endblock %}
+	
+
+{% endblock %}

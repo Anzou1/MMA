@@ -1,13 +1,17 @@
 body {
     position: relative;
     min-height: 105vh;
+    font-family: 'Montserrat';
 
 }
 
-.im{
-    position: fixed;
-    
+a.nav-link{
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
 }
+
+
 
 .navbar-conex,
 .navbar-conex a {
@@ -16,13 +20,22 @@ body {
 
 .marg{
     margin-top: 22px;
+
 }
 
+.texttop15
+{
+    color: black;
+}
+.secondhr
+{
+width: 60%;
 
+}
 .tt{
    
     background-color: white;
-    border-radius: 12px;
+  
 }
 .foot {
     text-align: center;
@@ -65,14 +78,22 @@ body {
 
 .annoncetext{
    
+    margin-top: 22px; 
     text-align: center;
     color: black;
+    font-size: 18px;
+    font-weight: 700;
 }
 .textcolonnetale {
     font-family: 'Anton', sans-serif;
-    color: white;
+    color: black;
     background-color: #ffc107;
     border-radius: 2px;
+    
+}
+
+.com{
+    width: 50px!important;
 }
 
 #myCarousel {
@@ -92,7 +113,7 @@ body {
 
 .forum {
     height: 480px;
-    background-color: white;
+    background-color: rgb(245, 245, 245);
     width: 100%;
     overflow: auto;
     padding: 0px !important;
@@ -119,11 +140,15 @@ body {
 }
 
 .tofhetapetitle {
+    border-style: dotted;
+    margin-top: 22px; 
     text-align: center;
     font-size: 2.8vw;
     font-family: 'Anton', sans-serif;
-    color: white;
+    color: black;
     background-color: #ffc107;
+    
+   
 }
 
 .bluecorner {
@@ -140,7 +165,8 @@ body {
 }
 
 
-/* *******media queries telephone***********/
+
+/* *******media queries telephone d'ORDRE ET D AGENCEMENT A LA VERTICALE***********/
 
 
 
@@ -171,7 +197,7 @@ body {
 
     
 }
-
+/********** LES MEDIAS QUERIES iPHONE 678!!!!!!!! **************/
 
 @media (max-width: 768px) {
     .btn-responsive {
@@ -191,8 +217,35 @@ body {
         line-height: 1.5;
         border-radius: .3rem;
     }
+
+    /* TAILLE RESPONSIVE DES COMBATTANTS TALE OF THE TAPE */
+    .redcorner {
+        width: 106px;
+        height: 23vh;
+        transform: scaleX(-1);
+    }
+
+    .bluecorner {
+        width: 106px;
+        height: 23vh;
+        
+    }
+/* *****ESPACE ENTRE CHAQUE ELEMENT RESPONSIVE*************** */
+    .annonce {
+        margin-bottom: 40px;
+        
+    }
+    .taleofthebox {
+        padding-right: 20px;
+        
+    }
+    .cadre {
+        margin-right: -80px;
+       
+       
+    }
   }
-  
+  /* ****************************************************************************** */
   @media (min-width: 769px) and (max-width: 992px) {
     .btn-responsive {
       padding:4px 9px;
@@ -216,7 +269,7 @@ body {
 }
 
 .styled-table thead tr {
-    background-color: #318070;
+    background-color:darkgray;
     color: #ffffff;
 
 }
@@ -224,6 +277,7 @@ body {
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
+    
 }
 
 .styled-table tbody tr {
@@ -235,7 +289,7 @@ body {
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid darkgray;
 }
 
 .styled-table tbody tr.active-row {
