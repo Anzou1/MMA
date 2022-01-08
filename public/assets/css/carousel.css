@@ -25,9 +25,12 @@ body {
 
 /* Declare heights because of positioning of img element 
 ici la zone du carousel*/
-.carousel-item {
+/* .carousel-item {
     height: 32rem;
 }
+
+
+
 .carousel-item > img {
     position: absolute;
     top: 0;
@@ -35,7 +38,7 @@ ici la zone du carousel*/
     min-width: 100%;
     height: 32rem;
 }
-
+ */
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -89,4 +92,38 @@ ici la zone du carousel*/
     .featurette-heading {
         margin-top: 7rem;
     }
+
+
+
+    @media(max-width: 375px)
+    {
+        .carousel-item {
+            height: 32rem;
+        }
+        
+        
+        
+        .carousel-item > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            height: 32rem;
+        }
+}
+}
+
+
+
+@media(max-width: 475px)
+{
+
+.btn-group-lg>.btn, .btn-lg {
+    padding: .5rem 1rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    border-radius: .3rem
+}
+
+
 }

@@ -68,8 +68,6 @@ class ForumController extends AbstractController
             $user = $this->getUser();
 
 
-            // $userComment = $this->getUser()->getId();
-
 
             $comment->setUser($user);
             $comment->setdiscussion($discussion);
